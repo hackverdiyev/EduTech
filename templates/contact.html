@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Contact</title>
+  <link rel="stylesheet" href="/static/css/contact.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="contact_us_container">
+      <div class="contact_social">
+        <div class="contact_cont">
+          <div class="logos">
+            <img src="/static/images/logo.png" height="60px" alt="Olimpus">
+          </div>
+          <div class="contact_gmail">
+            <i class="bi bi-envelope"></i>
+            <a href="mailto:olimpus.aze@gmail.com" class="gmail_contact">olimpus.aze@gmail.com</a>
+          </div>
+          <div class="contact_insta">
+            <i class="bi bi-instagram"></i>
+            <p class="insta_contact">@olimpus_az</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact_message">
+        <form method="post">
+        {% csrf_token %}
+        <div class="contact_input_form"> 
+          <i class="bi bi-person-fill"></i>
+          <input type="text" name='fullname' class="name_surname_contact" placeholder="Full name" required>
+        </div>
+        <div class="contact_input_form"> 
+          <i class="bi bi-envelope-at-fill"></i>
+          <input type="email" name="email" class="person_gmail_contact" placeholder="Email" required>
+        </div>
+        <div class="contact_input_form2">
+          <i class="bi bi-chat-right-fill"></i>
+          <textarea type="text" name="message" class="person_message_contact" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="submit_contact_message">Send</button>
+      </form>
+      </div>
+    </div>
+    {% include 'navbar.html' %}
+</body>
+</html>

@@ -1,0 +1,375 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+}
+
+.askingAI_btn{
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #4a4abd;
+    color: white;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.problem_container{
+    margin: 0 auto;
+    margin-top: 130px;
+    background-color: #ffffff;
+    width: 70%;
+    height: auto;
+    border-radius: 30px;
+    margin-bottom: 30px;
+}
+
+.problem_container_head{
+    display: flex;
+    padding: 15px;
+    padding-left: 30px;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.id_of_problem{
+    color: red;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.prb_txt{
+    margin: 0 auto;
+    color: rgba(169, 169, 169, 0.957);
+}
+
+.add_use{
+    text-align: center;
+}
+
+.add_use a{
+    text-decoration: none;
+    color: rgba(169, 169, 169, 0.957);
+}
+
+.add_use2{
+    text-align: center;
+    color: rgba(169, 169, 169, 0.957);
+    padding-bottom: 10px;
+}
+
+.add_use2 a{
+    text-decoration: none;
+    color: rgba(169, 169, 169, 0.957);
+}
+
+.problem_container_head .problem_name{
+    color: #4a4abd;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.problem_container_head .report_problem{
+    background-color: white;
+    cursor: pointer;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    color: #4a4abd;
+}
+
+hr{
+    border: dashed 1px #c6c3c3;
+}
+
+.problem_container .problem_context_container{
+    padding: 25px;
+}
+
+.problem_container .problem_context_container .problem_context_pharagraph{
+    padding-bottom: 25px; 
+}
+
+.problem_container img{
+    display: block;
+    margin: 0 auto;
+}
+
+.problem_container .solution_context_container{
+    padding: 25px;
+}
+
+video{
+    display: block;
+    margin: 0 auto;
+}
+
+.add_solution_btn_cont{
+    display: flex;
+    padding: 15px;
+    padding-left: 30px;
+    align-items: center;
+    padding-right: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    justify-content: center;
+}
+
+.about_add_solution{
+    text-align: center;
+    padding-top: 20px;
+    color: #4a4abd;
+}
+
+.hell_sayi_about{
+    font-weight: 600;
+}
+
+.submit_solution{
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #4a4abd;
+    color: white;
+    cursor: pointer;
+}
+
+.solution_context_btn_open{
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #4a4abd;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.bi-chevron-down{
+    padding-left: 15px;
+}
+.bi-chevron-up{
+    padding-left: 15px;
+}
+
+.closed_solution{
+    display: none;
+}
+
+.opened_solution{
+    display: block;
+}
+
+#report_view{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.653);
+    z-index: 1000000;
+    display: none;
+    overflow-y: auto; 
+}
+
+#report_view .report_head{
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 50%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 50px;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+
+
+#report_view .report_head .head_re .close_report{
+    margin: 0;
+    border:0;
+    font-size: 35px;
+    background-color: transparent;
+    color: rgb(165, 165, 165);
+    text-align: center;
+    cursor: pointer;
+}
+
+#report_view .report_head h1{
+    color: #4a4abd;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    font-size: 30px;
+}
+
+#report_view .check_boxes_input{
+    padding: 15px;
+}
+
+#report_view .check_boxes_input .input_rows{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#report_view .check_boxes_input .input_rows label{
+    padding-left: 12px;
+    font-size: 15px;
+    font-weight: 400;
+    color: #4a4abd;
+}
+
+#report_view #report_other{
+    resize: none;
+    padding: 10px;
+    color: #4a4abd;
+    width: 80%;
+}
+
+#report_view .submit_report{
+    padding: 10px 15px;
+    background-color: green;
+    color: white;
+    border: 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#report_view .check_boxes_input input{
+    width: 18px;
+    height: 18px;
+}
+
+#report_view textarea{
+    resize: none;
+    width: 60%;
+    padding: 10px;
+}
+
+.view_ai{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.653);
+    z-index: 1000000;
+    display: block;
+    overflow-y: auto; 
+}
+
+.view_ai .solution_summary{
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 200px;
+    margin-bottom: 20px;
+    width: 60%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 50px;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+
+
+.view_ai .solution_summary .head_sol_ai .close_viewpage{
+    float: right;
+    margin: 0;
+    border:0;
+    font-size: 35px;
+    background-color: transparent;
+    color: rgb(165, 165, 165);
+    text-align: center;
+    cursor: pointer;
+}
+
+.view_ai .solution_summary h1{
+    color: #4a4abd;
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.view_ai .solution_summary .asking_ai{
+    padding: 30px;
+}
+
+@media (max-width:999px){
+    .problem_container{
+        width: 98%;
+    }
+    #report_view .report_head{
+        width: 80%;
+    }
+}
+
+@media (max-width:796px){
+    .problem_container_head .problem_name{
+        font-size: 24px;
+    }
+    #report_view textarea{
+        width: 100%;
+    }
+}
+
+
+@media (max-width:629px){
+    .problem_context_container img{
+        width: 100%;
+    }
+    .solution_context_container video{
+        width: 95%;
+    }
+    .solution_context_container img{
+        width: 100%;
+    }
+    .problem_container_head .problem_name{
+        font-size: 20px;
+    }
+    #report_view .report_head{
+        width: 96%;
+    }
+}
+
+@media (max-width:508px){
+    .problem_container_head .problem_name{
+        font-size: 18px;
+    }
+    .problem_container_head{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .add_use{
+        font-size: 16px;
+    }
+    .id_of_problem{
+        font-size: 15px;
+    }
+    .problem_container_head .report_problem{
+        width: 15px;
+        height: 20px;
+        font-size: 20px;
+    }
+}

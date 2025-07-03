@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Login</title>
+  <link rel="stylesheet" href="/static/css/forms.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <form method="post" id="login_place">
+    {% csrf_token %}
+    <div class="place">
+      <img src="/static/images/logo2.png" style="height: 50px;" alt="Logo">
+      <p class="Title">Login</p>
+      <div class="input_data">
+        <input name="username" type="text" placeholder="Username"><br>
+        <input name="password" type="password" placeholder="Password"><br>
+        {% if error == 1 %}
+        <br><p class="error">Username not found</p>
+        {% elif error == 2 %}
+        <br><p class="error">Incorrect password</p>
+        {% endif %}
+      </div>
+      <button class="submit" type="submit">Daxil ol</button>
+      <p class="go_opposite">Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+      <a href="{% url 'restore_password' %}" id="password_forgot">Forgot your password?</a>
+    </div>
+  </form>
+</body>
+</html>

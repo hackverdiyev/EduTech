@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpus | Add</title>
+    <link rel="stylesheet" href="/static/css/add.css">
+    <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="add_preferences">
+        {% if type == 'problem' %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="add_problem">
+                <p class="label_problem">Name of the problem:</p>
+                <input type="text" class="source_problem" name="source_problem" required>
+                <p class="label_problem">Subject:</p>
+                <select name="problem_subject" id="problem_subject_selected" required>
+                    <option value="">None</option>
+                    {% for key,value in subjects.items %}
+                    <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+                <div class="images_problem">
+                    <p class="label_problem">Image of problem:</p><br>
+                    <input type="file" id="problem_images" accept="image/png, image/jpeg, image/jpg" name="photo" multiple/>
+                    <label for="problem_images" class="choose_img">Select image</label><br>
+                    <div class="image_pp_pre">
+                        <img src="#" class="uploaded_img_preview">
+                    </div><br>
+                </div>
+                <p class="label_problem">Context of problem:</p>
+                <textarea name="text_of_problem" id="text_of_problem" cols="100" rows="10"></textarea>
+                <p class="information_about_verify">Added problems will be placed, after being accepted by teachers ora admins for reliability.<br>This rule is not for #Clever and #Teacher tags.</p>
+                <button type="submit" class="submit_form" name="with_solution">Add with solution</button>
+                <button type="submit" class="submit_form" name="without_solution">Add without solution</button>
+            </div>
+        </form>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const input = document.getElementById("problem_images");
+                const image = document.getElementsByClassName("uploaded_img_preview")[0];
+                const image_div = document.getElementsByClassName("image_pp_pre")[0];
+
+                input.addEventListener("change", function () {
+                    const input_file = input.files[0];
+                    if (input_file) {
+                        const reader = new FileReader();
+                    
+                        reader.onload = function (event) {
+                            image.src = event.target.result;
+                            image_div.style.display = "block";
+                        }
+                    
+                        reader.readAsDataURL(input_file);
+                    } else {
+                        image.src = "#";
+                        image_div.style.display = "none";
+                    }
+                });
+            });
+        </script>
+        {% elif type == 'solution' %}
+        <form method="post" class="add_solution" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="label_solution">Video of solution:</p>
+            <input type="file" id="solution_video" name="sol_video" accept="video/mp4, video/webm, image/mkv, image/avi"/>
+            <label for="solution_video">Select video</label>
+            <div class="video_pp_pre">
+                <video width="100%" class="uploaded_video_preview" controls="controls">
+                    <source src="#" type="video/mp4" />
+                </video>
+            </div>
+            <p class="label_solution">Image of solution:</p>
+            <input type="file" id="solution_images" name="sol_imgs" accept="image/png, image/jpeg, image/jpg" multiple/>
+            <label for="solution_images">Select image</label>
+            <div class="image_pp_pre_sol">
+                <img src="#" class="uploaded_img_preview_sol">
+            </div>
+            <p class="label_solution">Context of solution:</p>
+            <textarea name="text_of_solution" id="text_of_solution" cols="100" rows="10"></textarea><br>
+            <p class="information_about_verify">Added problems will be placed, after being accepted by teachers ora admins for reliability.<br>This rule is not for #Clever and #Teacher tags.</p>
+            <button type="submit" class="submit_form">Submit</button>
+        </form>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const input = document.getElementById("solution_images");
+                const image = document.getElementsByClassName("uploaded_img_preview_sol")[0];
+                const image_div = document.getElementsByClassName("image_pp_pre_sol")[0];
+            
+                input.addEventListener("change", function () {
+                    const input_file = input.files[0];
+                    if (input_file) {
+                        const reader = new FileReader();
+                    
+                        reader.onload = function (event) {
+                            image.src = event.target.result;
+                            image_div.style.display = "block";
+                        }
+                    
+                        reader.readAsDataURL(input_file);
+                    } else {
+                        image.src = "#";
+                        image_div.style.display = "none";
+                    }
+                });
+            });
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const input = document.getElementById("solution_video");
+                const video = document.getElementsByClassName("uploaded_video_preview")[0];
+                const video_div = document.getElementsByClassName("video_pp_pre")[0];
+            
+                input.addEventListener("change", function () {
+                    const file = input.files[0];
+                    console.log(file);
+                    if (file) {
+                        const reader = new FileReader();
+                    
+                        reader.onload = function (event) {
+                            video.src = event.target.result;
+                            video_div.style.display = "block";
+                        }
+                    
+                        reader.readAsDataURL(file);
+                    } else {
+                        video.src = "#";
+                        video_div.style.display = "none";
+                    }
+                });
+            });            
+        </script>
+        {% endif %}
+    </div>
+</body>
+</html>

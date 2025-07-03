@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+}
+
+.ai_container{
+    margin: 0 auto;
+    background-color: white;
+    height: auto;
+    width: 70%;
+    margin-top: 150px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.ai_container_ai_head h1{
+    color: #b04545;
+    font-size: 34px;
+    font-weight: 700;
+    text-align:center;
+}
+
+.ai_video_content{
+    display: block;
+    margin: 0 auto;
+}
+.text_ai_speaking{
+    font-size: 20px;
+    font-weight: 500;
+    padding: 15px;
+}
+
+.message_toai_cont{
+    display: flex;
+    align-items: center;
+}
+
+.text_message_toai{
+    width: 90%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.text_message_toai .text_msg_inp_toai{
+    padding: 9px;
+    border-radius: 9px;
+    resize:none;
+    font-size: 18px;
+    width: 100%;
+}
+
+.voice_msg_toai{
+    width: 10%;
+    padding-left: 15px;
+}
+
+.voice_msg_btn{
+    border: 0;
+    border-radius: 100%;
+    padding: 15px;
+    color: white;
+    background-color: #4a4abd;
+    font-size: 18px;
+    width: 50px;
+    height: 50px;  
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.send_txt_msg_toai{
+    width: 10%;
+    padding-left: 15px;
+    display: none;
+}
+
+.txt_msg_btn{
+    border: 0;
+    border-radius: 100%;
+    padding: 15px;
+    color: white;
+    background-color: #4a4abd;
+    font-size: 18px;
+    width: 50px;
+    height: 50px;  
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#vid{
+    display: none;
+    transition: 0.5s ease-in-out;
+    animation-name: startmove;
+    animation-duration: 2s;
+  }
+  
+  @keyframes startmove{
+    from {opacity: 0; width: 0px; height: 0px;}
+    to {opacity: 1;}
+  }
+  @keyframes stopmove{
+    from {opacity: 1; display: block;}
+    to {opacity: 0; width: 0px; height: 0px; display: none;}
+  }

@@ -1,0 +1,616 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+}
+
+.profile{
+    margin: 0 auto;
+    margin-top: 8%;
+    width: 100%;
+    padding: 0 10%;
+}
+
+.all_profile_properties{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.profile .profile_about{
+    background-color: white;
+    border-radius: 30px;
+    padding: 20px 30px;
+    margin: 0 auto;
+    width: 100%;
+    display: none;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section2{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.profile .profile_about .profile_photo{
+    border-radius: 100%;
+    width: 220px;
+    height: 220px;
+    display: block;
+    margin: 0 auto;
+}
+
+.profile .profile_about .change_profile_photo{
+    background-color: #4a4abd;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    padding: 7px;
+    cursor: pointer;
+    box-shadow: 0 4px 7px 0 #ababab;
+}
+
+.pp_section form{
+    display: flex;
+    justify-content: center;
+}
+
+.profile .head_prof{
+    color: white;
+    margin-bottom: 10px;
+}
+
+.profile .filter_buttons{
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.all_pp_propert{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.profile .filter_buttons button{
+    padding: 10px;
+    background: white;
+    color: #4a4abd;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.profile .filter_buttons button:first-child{
+    margin-left: 0;
+}
+
+.profile .filter_buttons .problems_added{
+    background-color: #4a4abd;
+    color: white;
+}
+
+.profile .filter_buttons .pass_change{
+    background-color: #4a4abd;
+    color: white;
+}
+
+.profile .filter_buttons .solutions_added{
+    background-color: #4a4abd;
+    color: white;
+}
+
+.profile_about_main{
+    background-color: white;
+    border-radius: 30px; 
+}
+
+.profile .plot_profile2{
+    color: #4a4abd;
+    font-size: 20px;
+    text-align:center;
+    padding-top: 10px;
+    font-weight: 600;
+}
+
+.profile .plot_profile3{
+    color: #4a4abd;
+    font-size: 20px;
+    text-align:center;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.plot_profile:last-child{
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+.profile .profile_about .user_about{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.profile .profile_about .user_about input{
+    border: 0.5px solid #4a4abd;
+    width: 210px;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(99, 99, 99);
+}
+
+.tags_section .plot_tags{
+    color: #4a4abd;
+    font-size: 20px;
+    text-align:center;
+    padding-top: 10px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.add_tag_about{
+    margin-top: 15px;
+}
+
+.add_tag_about p{
+    color: #4a4abd;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.add_tag_about p:first-child{
+    font-weight: 600;
+}
+
+.add_tag_about a{
+    text-decoration: none;
+    font-weight: 500;
+    color: #4a4abd;
+}
+
+.profile .profile_about .tags_section .tags{
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 6px;
+}
+
+.profile .profile_about .change_gmail{
+    border: 0.5px solid #4a4abd;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(99, 99, 99);
+    display: block;
+    margin: 0 auto;
+    margin-top: 8px;
+}
+
+.user_gmail{
+    display: flex;
+    align-items: center;
+}
+
+
+.save_btn_profile{
+    color: white;
+    background-color: rgb(24, 115, 24);
+    padding: 7px 17px;
+    border-radius: 7px;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.savebtns{
+    margin-top: 10px;
+}
+
+.save_changes{
+    display: block;
+    color: white;
+    background-color: rgb(24, 115, 24);
+    padding: 8px 17px;
+    border-radius: 7px;
+    margin: 0 auto;
+    margin-left: 10px;
+    border: 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.section3{
+    margin: 0 auto;
+    margin-top: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.logout_btn{
+    background-color: red;
+    color: white;
+    padding: 8px 10px;
+    border-radius: 7px;
+}
+
+.problems{
+    margin: 0 auto;
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.solutions{
+    margin: 0 auto;
+    height: auto;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.problems table{
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 1em;
+}
+
+.solutions table{
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 1em;
+}
+
+table tbody{
+    background-color: rgb(255, 255, 255);
+}
+
+table tbody tr{
+    border-bottom: solid rgba(206, 197, 197, 0.708) 1px;
+    transition: 1s ease;
+}
+
+table tbody tr:last-child{
+    border-bottom: 0;
+}
+table tbody tr td{
+    padding: 20px;
+}
+
+table tbody tr .problem_text{
+    padding: 0;
+}
+
+table tbody tr .problem_text a{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+table tbody tr .number{
+    background-color:#4a4abd;
+}
+table tr td:first-child{
+    text-align: center;
+    border-bottom: 0;
+}
+
+table tbody tr .number p{
+    font-weight: 700;
+    color: white;
+    background-color:#4a4abd;
+}
+
+table tbody tr td .go_problem{
+    display: block; 
+    padding: 10px 0 10px 70px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #4a4abd;
+    border: 0;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+table tbody tr:hover{
+    background-color: rgba(30, 29, 29, 0.185)
+}
+
+table tr:first-child td:first-child{
+    text-align: center;
+    border-top-left-radius: 1em;
+}
+
+table tr:last-child td:first-child{
+    text-align: center;
+    border-bottom-left-radius: 1em;
+}
+
+table tr:first-child td:last-child{
+    border-top-right-radius: 1em;
+}
+
+table tr:last-child td:last-child{
+    border-bottom-right-radius: 1em;
+}
+
+table tbody tr td .view_problem, .view_problem1{
+    color: #4a4abd;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+#view_div{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.653);
+    z-index: 1000000;
+    display: none;
+    overflow-y: auto; 
+}
+
+#view_div .problem_summary{
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 70%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 50px;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+#view_div .problem_summary .head_pr .close_viewpage, .close_viewpage1{
+    margin: 0;
+    border:0;
+    font-size: 35px;
+    background-color: transparent;
+    color: rgb(165, 165, 165);
+    text-align: center;
+    cursor: pointer;
+}
+
+#view_div .problem_summary h1{
+    color: #4a4abd;
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#view_div .problem_summary img{
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#view_div .problem_summary .problem_context{
+    padding: 30px;
+}
+
+#view_div .problem_summary p:last-child{
+    text-align: center;
+    margin-top: 20px;
+    color:rgba(0, 0, 0, 0.393);
+    font-size: 17x;
+    font-weight: 500;
+}
+
+.passcode_change{
+    background-color: white;
+    height: auto;
+    width: 100%;
+    display: none;
+    margin: 0 auto;
+    padding: 20px 20px;
+    border-radius: 20px;
+}
+
+.passcode_change form{
+    margin-top: 20px;
+}
+
+.passcode_change button{
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border:0;
+    margin-top: 20px;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+}
+
+.passcode_change input{
+    border: 0.5px solid #4a4abd;
+    width: 210px;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 400;
+    color: rgb(99, 99, 99);
+}
+
+.inputs{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.head_pass{
+    color: #4a4abd;
+    text-align: center;
+}
+
+.success{
+    text-align: center;
+    color: green;
+    font-weight: 600;
+}
+
+.error{
+    padding-top: 10px;
+    text-align: center;
+    color: red;
+}
+
+.success{
+    padding-top: 10px;
+    text-align: center;
+    color: green;
+}
+
+.delete_pp_save{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.delete_pp_save .delete_pp{
+    background-color: red;
+    color: white;
+    border: 0;
+    padding: 7px 17px;
+    border-radius: 7px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+@media (max-width: 1380px){
+    .profile{
+        margin-top: 12%;
+    }
+}
+
+@media (max-width: 1065px){
+    .inputs{
+        display:block;
+    }
+    .inputs div input{
+        display: block;
+        margin: 0 auto;
+        width: 300px;
+    }
+    .inputs div{
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 951px){
+    .profile{
+        margin-top: 18%;
+    }
+
+}
+
+@media (max-width: 855px){
+    .profile .filter_buttons .solutions_added{
+        margin-top: 10px;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 649px){
+    .profile .filter_buttons .problems_added{
+        margin-top: 10px;
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 629px){
+    .all_profile_properties{
+        width: 95%;
+    }
+}
+
+@media (max-width: 425px){
+    .profile .profile_about .tags_section .tags{
+        font-size: 12px;
+        padding: 4px;
+    }
+}
+
+@media (max-width: 501px){
+    .profile{
+        margin-top: 24%;
+    }
+}
+
+
+@media (max-width: 450px){
+    .profile{
+        margin-top: 29%;
+    }
+}
+
+@media (max-width: 491px){
+    .profile{
+        padding: 15px;
+    }
+    .all_profile_properties{
+        width: 100%;
+    }
+    .problems table{
+        width: 97%;
+    }
+    .solutions table{
+        width: 97%;
+    }
+    .head_pass{
+        font-size: 25px;
+    }   
+    .inputs div input{
+        width: 230px;
+    }
+}
+
+@media (max-width:1032px){
+    table tbody tr td .go_problem{
+        padding: 10px 0 10px 20px;
+    }
+    #view_div .problem_summary{
+        width: 80%;
+    }
+}
+
+@media (max-width:871px){
+    #view_div .problem_summary{
+        width: 90%;
+    }
+}
+
+@media (max-width:774px){
+    #view_div .problem_summary{
+        width: 98%;
+    }
+}

@@ -1,0 +1,319 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+    background-image: url('/static/images/bg-design.png');
+}
+
+header{
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    height: 12%;
+    display: flex;
+    align-items: center;
+    padding: 33px 9%;
+    background: #4a4abd 75.52%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.navbar-all-elements{
+    display: flex;
+    align-items: center;
+}
+
+.navlist{
+    margin-left: 100px;
+    display: flex;
+}
+
+
+
+.navlist .dropbtn a{
+    text-decoration: none;
+    color:white;
+}
+
+#group_not{
+    display: flex;
+    align-items: center;
+}
+
+.notify_group{
+    position: absolute;
+    margin-left: 78px;
+    margin-top: -22px;
+    text-decoration: none;
+    text-align: center;
+    background-color: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    padding: 5px;
+    font-size: 8px;
+    font-weight: 400;
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#problem_nav_feature_icon{
+    padding-left: 10px;
+    padding-top: 1px;
+    display: none;
+}
+
+.icon_opening{
+    display: none;
+    background-color: transparent;
+    border:0;
+    cursor: pointer;
+}
+
+#dropbtn_prob{
+    display: flex;
+    align-items: center;
+}
+
+.navlist button{
+    background-color: transparent;  
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0 19px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: transparent;
+    text-align: center;
+}
+
+.dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #253f6c;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 101;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    color: white;
+    margin-left: 0px;
+    padding: 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: left;
+    transition-duration: 0s;
+}
+
+.buttons_drop{
+    display: flex;
+}
+
+.dropdown-content a:hover {
+    background-color: white;
+    color: #12124f;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+
+.forms-all{
+    position: absolute;
+    right: 0;
+}
+
+header .users-section{
+    position: relative;
+    display:flex;
+    padding: 55px;
+}
+
+header .users-section button{
+    font-size: 15px;
+    font-weight: 400;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: white;
+    border: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-left: 20px;
+    cursor: pointer;
+    color:#050539;
+    z-index: 102;
+    transition-duration: 0.5s;
+}
+
+header .users-section a:first-child{
+    margin-left: 0;
+}
+
+header .users-section button:hover{
+    background-color:#8790bd;
+    color: #ffffff;
+}
+
+.pp_all{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 0;
+}
+
+header .profile-section{
+    position: relative;
+    border-bottom-right-radius: 50px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    height: 80%;
+    width: auto;
+    justify-content: right;
+    align-items:center;
+    display:flex;
+}
+header .profile-section a{
+    height: 70px;
+    width: 70px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: rgba(255, 255, 255, 0);
+}
+header .profile-section a img{
+    max-height: 70%;
+    border-radius: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 102;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 15%;
+}
+
+header .profile-section .user{
+    margin-right: 30px;
+}
+header .profile-section .user .username_txt{
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+}
+header .profile-section .user .user_tag{
+    font-size: 11px;
+    font-weight: 400;
+    color: #ffffff;
+}
+
+.head-bottom{ 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10000;
+    width: 100%;
+    height: 40%;
+    background-color: #6f73e7;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+#menu-icon{
+    position: absolute;
+    color: white;
+    font-size: 35px;
+    z-index: 107831626073;
+    cursor: pointer;
+    display: none;
+    right: 30px;
+}
+
+@media (max-width: 1535px){
+    header{
+        padding: 30px 3%;
+        transition: .2s;
+    }
+}
+
+@media (max-width: 1066px){
+    .icon_opening{
+        display: block;
+    }
+    #menu-icon{
+        display: block;
+    }
+    #problem_nav_feature_icon{
+        display: block;
+    }
+    .dropdown-content{
+        position: relative;
+        background-color: #4a4abd;
+        box-shadow: 0px 0px 0px 0px #ffffff;
+    }
+    .closed_div{
+        display: none;
+    }
+    header a img{
+        margin-left: 10px;
+    }
+    .navbar-all-elements{
+        position: absolute;
+        right: -200%;
+        top: 0;
+        background-color: #4a4abd;
+        height: auto;
+        width: 100%;
+        display: flex;
+        padding: 10px;
+        flex-direction: column;
+        transition-duration: all .55s ease;
+    }
+    .navlist{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        padding-top: 70px;
+    }
+    .navlist button{
+        padding: 12px 0;
+        font-size: 1.1rem;
+    }
+
+    .forms-all{
+        position: relative;
+        margin-top: 50px;
+    }
+
+    .pp_all{
+        position: relative;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .navbar-all-elements.open{
+        right: 0;
+    }
+}
+@media (max-width: 500px){
+    .head-bottom{
+        height: 41%;
+    }
+}

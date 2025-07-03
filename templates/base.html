@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Olimpiadalarda öz yerinizi tutun</title>
+  <link rel="stylesheet" href="/static/css/base.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://css.gg/css?=|comment|eye-alt|eye" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <div class="base_container">
+    <div class="base_first_poster">
+      <div class="base_ads_plot">
+        <h3>Reach The Peak</h3>
+        <p>Increase your chances of winning a medal in the olympiads, which play an important role in education at the present time, by solving the problems posted on our page.</p>
+        <a href="{% url 'problems_main' %}">Problems <i class="ri-arrow-right-line"></i></a>
+      </div>
+      <div class="base_img_container">
+        <img src="/static/images/olympiad_post.png" alt="Olimpiada">
+      </div>
+    </div>
+    <div class="base_our_offers">
+      <div class="base_our_offer">
+        <div class="base_our_offer_center">
+          <i class="bi bi-people-fill"></i>
+          <p>Collaborative environment</p>
+        </div>
+      </div>
+      <div class="base_our_offer">
+        <div class="base_our_offer_center">
+          <i class="bi bi-card-heading"></i>
+          <p>Solutions to many problems</p>
+        </div>
+      </div>
+      <div class="base_our_offer">
+        <div class="base_our_offer_center">
+          <i class="bi bi-book-fill"></i>
+          <p>Development in olympiad education</p>
+        </div>
+      </div>
+
+      <div class="base_our_offer">
+        <div class="base_our_offer_center">
+          <i class="ri-question-answer-fill"></i>
+          <p>Increase your ranking</p>
+        </div>
+      </div>
+    </div>
+    <div class="base_lately_added" data-count-id="{{problems_count}}">
+      <table class="all_problems_table">
+        <thead>
+          <tr>
+            <th colspan="4">Last 10 problems</th>
+          </tr>
+        </thead>
+        <tbody class="table_body">
+          {% for problem in problems %}
+          {% if problem.show_problem %}
+          <tr class="data-item">
+              <td width="5%" class="number"><p class="number0">{{problem.id}}</p></td>
+              <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' problem.problem_subject problem.id %}" class="go_problem">{{problem.source_problem}} <p style="float: right; margin-right: 30px; color: red;">ID: {{problem.id}}</p></a></td>
+              <td width="10%"class="follows_text"><p id="follows">{{problem.problem_views}}</p></td>
+              <td width="10%" class="view"><button class="view_problem" data-problem-id="{{problem.id}}"><i class="gg-eye"></i></button></td>
+          </tr>
+          <div class="view_page{{problem.id}}" id="view_div">
+              <div class="problem_summary">
+                  <div class="head_pr">
+                      <button id="close_view" class="close_viewpage" data-problem-id="{{problem.id}}"><i class="ri-close-fill"></i></button>
+                      <h1 class="sourceof_problem">{{problem.source_problem}}</h1>
+                  </div>
+                  <hr>
+                  {% if problem.problem_context %}
+                  <p class="problem_context">{{problem.problem_context}}</p>
+                  {% endif %}
+                  {% if problem.problem_context_img %}
+                  <img class="problem_photo" width="70%" src="{{ MEDIA_URL }}{{ problem.problem_context_img.url }}" alt="">
+                  {% endif %}
+              </div>
+          </div>
+          {% endif %}
+          {% endfor %}
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <footer>
+    <p>© Olimpus 2023</p>
+  </footer>
+  <script src="/static/js/base.js"></script>
+</body>
+</html>

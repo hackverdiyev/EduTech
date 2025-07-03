@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpus | Add Group</title>
+    <link rel="stylesheet" href="/static/css/create_group.css">
+    <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="create_group">
+        <form method="post">
+            {% csrf_token %}
+            <p class="label_group">Group name:</p>
+            <input type="text" class="group_name" name="name" required>
+            <p class="label_group">About:</p>
+            <input type="text" class="group_about" name="about">
+            <p class="label_group">Subject:</p>
+            <select name="subject" id="group_subject_selected">
+                <option value="all">General</option>
+                {% for key,value in subjects.items %}
+                <option value="{{ key }}">{{ value }}</option>
+                {% endfor %}
+            </select><br>
+            <button class="submit_create" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

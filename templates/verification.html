@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Verification</title>
+  <link rel="stylesheet" href="/static/css/forms.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <style>
+    .about{
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 15px;
+      font-weight: 200;
+    }
+    .place{
+      display: block;
+      margin: 0 auto;
+      text-align: center;
+      height: auto;
+      width: 500px;
+      margin-top: 15px;
+      border-radius: 30px;
+      margin-top: 11%;
+      margin-bottom: 30px;
+      font-weight: 200;
+      background-color: #ebe8e8;
+    }
+    .input_data{
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .place .input_data input{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 18px;
+      letter-spacing: 10px;
+      text-align: center;
+      -moz-appearence: textfield;
+    }
+    
+    input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .place img{
+      margin-top: 20px;
+    }
+    
+    .place .resend_time{
+      display: flex;
+      width: 78%;
+      margin: 0 auto;
+    }
+
+    .place .resend_time .countdown{
+      margin-left: 25%;
+    }
+    @media (max-width: 432px){
+      .place{
+        width: 380px;
+      }
+    }
+  </style>
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <form method="post" class="place" id="place_verification">
+    {% csrf_token %}
+      <img src="/static/images/logo2.png" style="height: 50px;" alt="Logo">
+      <p class="Title">Verification</p>
+      <p class="about">Six-digit verification code was sent you. Enter the code for verifying your email. </p>
+      <div class="input_data">
+        <input name="code" type="number" autofocus><br>
+      </div>
+      <div class="resend_time">
+        <p>Kod gəlmədi? <a id="send_again" class="send_again">Send again.</a></p>
+        <p id="countdown" class="countdown" data-time-id="{{time}}" data-username-id="{{username}}">60</p>
+      </div>
+      {% if error == 1 %}
+      <br><p class="error">Code is incorrect.</p>
+      {% elif error == 2 %}
+      <br><p class="error">Code exceeded 5 minute time limit.</p>
+      {% endif %}
+      <button class="sumbit" type="submit">Submit</button>
+  </form>
+  <script src="/static/js/verification.js"></script>
+</body>
+</html>

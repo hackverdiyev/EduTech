@@ -1,0 +1,155 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+}
+
+.contact_us_container{
+    background-color: white;
+    display: flex;
+    width: 70%;
+    height: auto;
+    border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 210px;
+    margin-bottom: 30px;
+}
+
+.contact_social{
+    background: #353587;
+    padding: 15px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+
+.logos{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logos img:last-child{
+    padding-left: 10px;
+}
+
+.contact_insta{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.contact_insta i{
+    padding-right: 30px;
+    border-radius: 100%;
+}
+
+.contact_gmail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    margin-top: 30px;
+    font-weight: 500;
+}
+
+.contact_gmail i{
+    padding-right: 30px;
+    border-radius: 100%;
+}
+
+.contact_gmail .gmail_contact{
+    color: white;
+}
+
+.contact_message{
+    padding: 15px;
+    width: 50%;
+}
+
+.contact_input_form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.contact_input_form input{
+    padding: 10px;
+    border-radius: 8px;
+    border: 0.2px solid rgb(118, 118, 118);
+    padding-left: 27px;
+    width: 60%;
+}
+
+.contact_input_form i {
+    position: absolute;
+    color: #4a4abd;
+    padding-left: 6px;
+}
+
+.contact_input_form2{
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.contact_input_form2 textarea{
+    padding: 10px;
+    border-radius: 8px;
+    border: 0.2px solid rgb(118, 118, 118);
+    padding-left: 27px;
+    resize: none;
+    height: 100px;
+    width: 100%;
+}
+
+.contact_input_form2 i{
+    position: absolute;
+    color: #4a4abd;
+    padding-left: 6px;
+    padding-top: 10px;
+}
+
+.submit_contact_message{
+    border: 0;
+    padding: 8px 20px;
+    background-color: #4a4abd;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+@media (max-width: 934px){
+    .contact_us_container{
+        display: block;
+        width: 90%;
+        margin-top: 120px;
+    }
+    .contact_social{
+        width: 100%;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 0px;
+    }
+    .contact_message{
+        width: 100%;
+    }
+}

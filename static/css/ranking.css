@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+}
+
+.users_table{
+    margin: 0 auto;
+    margin-top: 150px;
+    width: 60%;
+    margin-bottom: 30px;
+}
+
+.users_table h1{
+    color: white;
+    font-size: 40px;
+    font-weight: 700;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.users_table .all_users_table{
+    border-collapse: collapse;
+    background-color: white;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.all_users_table thead th{ 
+    background: #4a4abd;
+    color: white;
+    padding: 10px;
+    font-weight: 600;
+}
+
+.all_users_table tr{
+    border-bottom: 0.5px solid rgba(173, 173, 173, 0.68);
+}
+
+.all_users_table thead tr:first-child th:first-child{
+    border-top-left-radius: 10px;
+}
+
+.all_users_table thead tr:first-child th:last-child{
+    border-top-right-radius: 10px;
+}
+
+.all_users_table tr:last-child td:first-child{
+    border-bottom-left-radius: 10px;
+}
+
+.all_users_table tr:last-child{
+    border-bottom: 0;
+}
+.all_users_table tr td{
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.follows_text{
+    text-align: center;
+    color: #4a4abd;
+}
+
+
+.all_users_table tr .number_td{
+    background-color: #4a4abd;
+    color: white;
+    padding: 10px 14px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.all_users_table tr .user_text{
+    color: white;
+    text-align: center;
+}
+
+@media (max-width: 730px){
+    .users_table{
+        width: 80%;
+    }
+    .users_table h1{
+        font-size: 30px;
+        padding-left: 10px;
+    }
+}
+
+
+
+

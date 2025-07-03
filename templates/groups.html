@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Qrup</title>
+  <link rel="stylesheet" href="/static/css/groups.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <div class="group_container"> 
+    <h1 class="group_name">{{ group.name }}</h1>
+    <div class="group_cont_head">
+      <button class="contest_btn" onclick="open_contest()">Problem lists</button>
+      <button class="group_participants_btn" onclick="open_group_part()">Members</button>
+      {% if admin %}
+      <button class="create_contest_btn" onclick="open_create()">Add problem list</button>
+      <button class="group_settings_btn" onclick="open_settings()">Settings</button>
+      {% endif %}
+    </div>
+    <div class="contests" data-default-id="{{ default }}">
+      {% if contests %}
+      {% for contest in contests %}
+      <div class="contest">
+        <div class="name_cont">
+          <a href="{% url 'contests' group.id contest.id %}">
+          <p class="contest_name">{{ contest.name }}</p>
+          </a>  
+        </div>
+        <div class="feature_contest">
+          <p class="added_time">{{ contest.pub_date }}</p>
+          <p class="user_added">Created by: <a href="{% url 'profile' contest.creator.username %}">{{ contest.creator }}</a></p>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <p class="no_contest">No Contests Fonunded</p>
+      {% endif %}
+    </div>
+    <div class="group_participants">
+    {% if admin %}
+      <div class="add_part_form">
+        <form method="post">
+          {% csrf_token %}
+          <input type="text" name="user_request" placeholder="Daxil etmək istədiyiniz istifadəçinin username-ini daxil edin." class="add_participant_inp">
+          <button type="submit" class="send_request">Send request</button>
+          {% if success == 2 %}
+          <p class="success">Request is sent.</p>
+          {% elif success == 3 %}
+          <p class="success">User is removed.</p>
+          {% elif success == 4 %}
+          <p class="success">User promoted to admin.</p>
+          {% elif success == 5 %}
+          <p class="success">User demoted to member.</p>
+          {% elif error == 1 %}
+          <p class="error">User doesn't exist.</p>
+          {% elif error == 2 %}
+          <p class="error">User is already added.</p>
+          {% endif %}
+        </form>
+      </div>
+      {% endif %}
+      <div class="participant">
+        {% if islogin.admin_tag %}
+        <a href="{% url 'profile' islogin.username %}" class="user_group" style="color: red;">{{ islogin.username }} <p style="color: gray;">(You)</p></a>
+        {% elif islogin.teacher_tag %}
+        <a href="{% url 'profile' islogin.username %}" class="user_group" style="color: blue;">{{ islogin.username }} <p style="color: gray;">(You)</p></a>
+        {% elif islogin.clever_tag %}
+        <a href="{% url 'profile' islogin.username %}" class="user_group" style="color: green;">{{ islogin.username }} <p style="color: gray;">(You)</p></a>
+        {% elif islogin.olympian_tag %}
+        <a href="{% url 'profile' islogin.username %}" class="user_group" style="color: purple;">{{ islogin.username }} <p style="color: gray;">(You)</p></a>
+        {% else %}
+        <a href="{% url 'profile' islogin.username %}" class="user_group" style="color: black;">{{ islogin.username }} <p style="color: gray;">(You)</p></a>
+        {% endif %}
+        {% if islogin == group.creator %}
+        <div class="group_tag creator">Creator</div>
+        {% else %}
+        {% if admin %}
+        <div class="group_tag admin">Admin</div>
+        {% else %}
+        <div class="group_tag member">Member</div>
+        {% endif %}
+      </div>
+      <div class="participant">
+        {% if group.creator.admin_tag %}
+        <a href="{% url 'profile' group.creator.username %}" class="user_group" style="color: red;">{{ group.creator.username }}</a>
+        {% elif group.creator.teacher_tag %}
+        <a href="{% url 'profile' group.creator.username %}" class="user_group" style="color: blue;">{{ group.creator.username }}</a>
+        {% elif group.creator.clever_tag %}
+        <a href="{% url 'profile' group.creator.username %}" class="user_group" style="color: green;">{{ group.creator.username }}</a>
+        {% elif group.creator.olympian_tag %}
+        <a href="{% url 'profile' group.creator.username %}" class="user_group" style="color: purple;">{{ group.creator.username }}</a>
+        {% else %}
+        <a href="{% url 'profile' group.creator.username %}" class="user_group" style="color: black;">{{ group.creator.username }}</a>
+        {% endif %}
+        <div class="group_tag creator">Creator</div>
+        {% endif %}
+      </div>
+      {% for admn in admins %}
+      <div class="participant">
+        {% if admn.admin_tag %}
+        <a href="{% url 'profile' admn.username %}" class="user_group" style="color: red;">{{ admn.username }}</a>
+        {% elif admn.teacher_tag %}
+        <a href="{% url 'profile' admn.username %}" class="user_group" style="color: blue;">{{ admn.username }}</a>
+        {% elif admn.clever_tag %}
+        <a href="{% url 'profile' admn.username %}" class="user_group" style="color: green;">{{ admn.username }}</a>
+        {% elif admn.olympian_tag %}
+        <a href="{% url 'profile' admn.username %}" class="user_group" style="color: purple;">{{ admn.username }}</a>
+        {% else %}
+        <a href="{% url 'profile' admn.username %}" class="user_group" style="color: black;">{{ admn.username }}</a>
+        {% endif %}
+        <div class="group_tag admin">Admin</div>
+        {% if admin %}
+        <form method="post" class="preferences_group_func">
+          {% csrf_token %}
+          <button class="decrease_user" name="decrease" value="{{ admn.id }}" alt="Member et"><strong><i class="bi bi-person-fill-down"></i></strong></button>
+          <button type="button" class="delete_user" data-profile-id="{{ admn.id }}"><strong><i class="bi bi-box-arrow-right"></i></strong></button>
+          <div class="delete_user_div{{admn.id}}" id="delete_div_cont_id">
+            <div class="delete_all_container">
+              <div class="delete_centering">
+                <p>Are you sure you want to remove {{admn.username}}?</p>
+                <div class="delete_user_functions">
+                  <button class="cancel_deleting" data-profile-id="{{ admn.id }}" type="button">Cancel</button>
+                  <button class="accept_delete_user" type="submit" name="delete_admin" value="{{ admn.id }}">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </form>
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% for participant in participants %}
+      <div class="participant">
+        {% if participant.admin_tag %}
+        <a href="{% url 'profile' participant.username %}" class="user_group" style="color: red;">{{ participant.username }}</a>
+        {% elif participant.teacher_tag %}
+        <a href="{% url 'profile' participant.username %}" class="user_group" style="color: blue;">{{ participant.username }}</a>
+        {% elif participant.clever_tag %}
+        <a href="{% url 'profile' participant.username %}" class="user_group" style="color: green;">{{ participant.username }}</a>
+        {% elif participant.olympian_tag %}
+        <a href="{% url 'profile' participant.username %}" class="user_group" style="color: purple;">{{ participant.username }}</a>
+        {% else %}
+        <a href="{% url 'profile' participant.username %}" class="user_group" style="color: black;">{{ participant.username }}</a>
+        {% endif %}
+        <div class="group_tag member">Member</div>
+        {% if admin %}
+        <form method="post" class="preferences_group_func">
+          {% csrf_token %}
+          <button class="increase_user" name="increase" value="{{ participant.id }}" alt="Admin et"><strong><i class="bi bi-person-fill-up"></i></strong></button>
+          <button type="button" class="delete_user" data-profile-id="{{ participant.id }}"><strong><i class="bi bi-box-arrow-right"></i></strong></button>
+          <div class="delete_user_div{{participant.id}}" id="delete_div_cont_id">
+            <div class="delete_all_container">
+              <div class="delete_centering">
+                <p>Are you sure you want to remove {{participant.username}}?</p>
+                <div class="delete_user_functions">
+                  <button class="cancel_deleting" data-profile-id="{{ participant.id }}" type="button">Cancel</button>
+                  <button class="accept_delete_user" type="submit" name="delete_participant" value="{{ participant.id }}">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>        
+        </form>
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% if admin %}
+      {% for request in requests %}
+      <div class="participant">
+        {% if request.admin_tag %}
+        <a href="{% url 'profile' request.username %}" class="user_group" style="color: red;">{{ request.username }}</a>
+        {% elif request.teacher_tag %}
+        <a href="{% url 'profile' request.username %}" class="user_group" style="color: blue;">{{ request.username }}</a>
+        {% elif request.clever_tag %}
+        <a href="{% url 'profile' request.username %}" class="user_group" style="color: green;">{{ request.username }}</a>
+        {% elif request.olympian_tag %}
+        <a href="{% url 'profile' request.username %}" class="user_group" style="color: purple;">{{ request.username }}</a>
+        {% else %}
+        <a href="{% url 'profile' request.username %}" class="user_group" style="color: black;">{{ request.username }}</a>
+        {% endif %}
+        <div class="group_tag member">Request</div>
+        {% if admin %}
+        <form method="post" class="preferences_group_func">
+          {% csrf_token %}
+          <button type="button" class="delete_user" data-profile-id="{{ request.id }}"><strong><i class="bi bi-box-arrow-right"></i></strong></button>
+          <div class="delete_user_div{{request.id}}" id="delete_div_cont_id">
+            <div class="delete_all_container">
+              <div class="delete_centering">
+                <p>Are you sure you want to remove request of {{request.username}}?</p>
+                <div class="delete_user_functions">
+                  <button class="cancel_deleting" data-profile-id="{{ request.id }}" type="button">Cancel</button>
+                  <button class="accept_delete_user" type="submit" name="delete_request" value="{{ request.id }}">Cancel request</button>
+                </div>
+              </div>
+            </div>
+          </div> 
+        </form>
+        {% endif %}
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="create_contest">
+      <div class="create_container">
+        <form method="post">
+          {% csrf_token %}
+          <label for="contest_name_create">Name:</label>
+          <input type="text" placeholder="Name of problem list" class="contest_name_create" id="contest_name_create" name="name" required>
+          <label for="contest_questions">Add problems:</label>
+          <p class="attention" style="color: red;">You should add problems by their IDs divided with comma</p>
+          <input type="text" placeholder="Example: 1, 2, 3 ..." id="contenst_questions" name="problems" required>
+          <button class="submit_create_contest" name="create_contest">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="group_settings">
+      <div class="settings_container">
+        <form method="post">
+          {% csrf_token %}
+          {% if success == 1 %}
+          <p class="success">Group changes saved succesfully.</p>
+          {% endif %}
+          <label for="change_group_name">Name:</label>
+          <input type="text" id="change_group_name" name="name" value="{{ group.name }}" required>
+          <label for="change_group_about">About:</label>
+          <input type="text" id="change_group_name" name="about" value="{{ group.about }}">
+          <p for="change_group_subject">Subject:</p>
+          <select id="group_subject_selected" name="subject">
+            {% if group.subject == 'all' %}
+            <option value="all" selected>General</option>
+            {% else %}
+            <option value="all">General</option>
+            {% endif %}
+            {% for key,value in subjects.items %}
+            {% if group.subject == key %}
+            <option value="{{ key }}" selected>{{ value }}</option>
+            {% else %}
+            <option value="{{ key }}">{{ value }}</option>
+            {% endif %}
+            {% endfor %}
+          </select><br>
+          <div class="group_set_buttons">
+            <button class="save_changes" name="change">Save changes</button>
+            {% if islogin == group.creator %}
+            <button type="button" class="delete_group_settings" onclick="open_delete_group()" name="delete">Delete group</button>
+            <div class="delete_group_div" id="delete_div_cont_id">
+              <div class="delete_all_container">
+                <div class="delete_centering">
+                  <p>Are you sure you want to delete {{group.name}}?</p>
+                  <div class="delete_group_functions">
+                    <button class="cancel_deleting_btn" type="button" onclick="close_delete_group()">Cancel</button>
+                    <button class="accept_delete_group" type="submit" name="delete_group">Delete group</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          </div>       
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const viewButtons = document.querySelectorAll('.delete_user');
+    const closeButtons = document.querySelectorAll('.cancel_deleting');
+    viewButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const profileId = this.dataset.profileId;
+            open_delete_user(profileId);
+        });
+    });
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const profileId = this.dataset.profileId;
+            close_delete_user(profileId);
+        });
+    });
+  });
+</script>
+<script src="/static/js/groups.js"></script>
+</html>

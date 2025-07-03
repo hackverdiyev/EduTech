@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+}
+
+input[type="file"]{
+    display:none;
+}
+
+label{
+    color: white;
+    background-color: #4a4abd;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.add_preferences{
+    background-color: white;
+    height: auto;
+    border-radius: 15px;
+    margin: 0 auto;
+    width: 70%;
+    margin-top: 180px;
+    margin-bottom: 40px;
+}
+
+.information_about_verify{
+    font-weight: 600;
+    color: red;
+}
+
+.add_problem{
+    padding: 18px 25px;
+}
+
+.label_problem{
+    color: #4a4abd;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 7px 0;
+}
+
+.source_problem{
+    width: 90%;
+    padding: 10px 14px;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 0.5px solid rgb(153, 153, 153);
+}
+
+#problem_subject_selected{
+    width: 90%;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 0.5px solid rgb(153, 153, 153);
+}
+
+#text_of_problem{
+    padding: 10px;
+    border-radius: 10px;
+    width: 90%;
+    resize: none;
+    border: 0.5px solid rgb(153, 153, 153);
+}
+
+hr{
+    border: dashed 1px #c6c3c3;
+}
+
+.add_solution{
+    padding: 10px 25px;
+}
+
+.label_solution{
+    color: #4a4abd;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px 0;
+    padding: 7px 0;
+}
+
+#text_of_solution{
+    padding: 10px;
+    border-radius: 10px;
+    width: 90%;
+    resize: none;
+    border: 0.5px solid rgb(153, 153, 153);
+}
+
+.submit_form{
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #4a4abd;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.image_pp_pre{
+    padding: 10px;
+    border: 1px solid #4a4abd;
+    margin-top: 20px;
+    display: none;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.uploaded_img_preview{
+    width: 100%;
+}
+
+.image_pp_pre_sol{
+    padding: 10px;
+    border: 1px solid #4a4abd;
+    margin-top: 20px;
+    display: none;
+    border-radius: 8px;
+    width: 200px;
+}
+
+.uploaded_img_preview_sol{
+    width: 100%;
+}
+
+.video_pp_pre{
+    padding: 10px;
+    border: 1px solid #4a4abd;
+    margin-top: 20px;
+    display: none;
+    border-radius: 8px;
+    width: 350px;
+}
+
+@media (max-width:890px){
+    .add_preferences{
+        width: 90%;
+    }
+}
+
+@media (max-width:390px){
+    .add_preferences{
+        width: 97%;
+    }
+}

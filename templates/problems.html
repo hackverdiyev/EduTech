@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Məsələlər</title>
+  <link rel="stylesheet" href="/static/css/chat.css">
+  <link rel="stylesheet" href="/static/css/problems.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://css.gg/css?=|comment|eye-alt|eye" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="problems">
+        {% if contest %}
+        <h1 class="head_prob"><a class="back_to_group" href="{% url 'groups' contest.group.id %}">{{contest.group.name}}</a><span>  >  </span>{{ contest.name }}</h1>
+        <div class="filter_buttons">
+            <button class="all_problems" onclick="show_all_problems()">All problems</button>
+            <button class="chat" onclick="show_chat()">Discuss</button>
+        </div>
+        {% else %}
+        <h1 class="head_prob">Problems</h1>
+        <div class="filter_buttons">
+            <button class="all_problems" onclick="show_all_problems()">All problems</button>
+            <button class="solved_problems" onclick="show_solved_problems()">Solved problems</button>
+            <button class="unsolved_problems" onclick="show_unsolved_problems()">Unsolved problems</button>
+            <div class="search_engine">
+                <form method="post">
+                    {% csrf_token %}
+                    {% if filter %}
+                    <input type="text" placeholder="Search problem..." class="search_text" name="search" value="{{ filter }}">
+                    {% else %}
+                    <input type="text" placeholder="Search problem..." class="search_text" name="search">
+                    {% endif %}
+                    <button type="submit" class="search_btn"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
+        </div>
+        {% endif %}
+        <table class="all_problems_table">
+            <tbody class="table_body">
+                {% for problem in problems %}
+                {% if problem.show_problem %}
+                <tr class="data-item">
+                    <td width="5%" class="number"><p class="number0"></p></td>
+                    <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' problem.problem_subject problem.id %}" class="go_problem">{{problem.source_problem}} <p style="float: right; margin-right: 30px; color: red;">ID: {{problem.id}}</p></a></td>
+                    <td width="10%"class="follows_text"><p id="follows">{{problem.problem_views}}</p></td>
+                    <td width="10%" class="view"><button class="view_problem" data-problem-id="{{problem.id}}"><i class="gg-eye"></i></button></td>
+                </tr>
+                <div class="view_page{{problem.id}}" id="view_div">
+                    <div class="problem_summary">
+                        <div class="head_pr">
+                            <button id="close_view" class="close_viewpage" data-problem-id="{{problem.id}}"><i class="ri-close-fill"></i></button>
+                            <h1 class="sourceof_problem">{{problem.source_problem}}</h1>
+                        </div>
+                        <hr>
+                        {% if problem.problem_context %}
+                        <p class="problem_context">{{problem.problem_context}}</p>
+                        {% endif %}
+                        {% if problem.problem_context_img %}
+                        <img class="problem_photo" width="100%" src="{{ problem.problem_context_img.url }}">
+                        {% endif %}
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if contest %}
+        <div class="chat_messages">
+            <div class="chat_container">
+                <div class="messages_sent">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="message_sent_cont">
+                        <div class="person_sent">
+                            <img src="/media/{{ message.user_added.profile_photo }}" alt="profile_photo" class="person_profile">
+                            <div class="texts_message">
+                                {% if message.user_added.admin_tag %}
+                                <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: red;">{{ message.user_added.username }}</a>
+                                {% elif message.user_added.teacher_tag %}
+                                <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: blue;">{{ message.user_added.username }}</a>
+                                {% elif message.user_added.clever_tag %}
+                                <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: green;">{{ message.user_added.username }}</a>
+                                {% elif message.user_added.olympian_tag %}
+                                <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: purple;">{{ message.user_added.username }}</a>
+                                {% else %}
+                                <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: black;">{{ message.user_added.username }}</a>
+                                {% endif %}
+                                <p class="message_text">{{ message.message }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <p class="no_message">No messages</p>
+                    {% endif %}
+                </div>
+                <form method="post" class="send_msg_frm">
+                    {% csrf_token %}
+                    <img src="/media/{{ islogin.profile_photo }}" alt="profile_photo" class="person_profile">
+                    <textarea type="text" name="message" cols="80" rows="1" placeholder="Öz fikirlərinizi paylaşın" class="mes_input"></textarea>
+                    <button type="submit" class="send_msg">Send message<i class="bi bi-send"></i></button>
+                </form>
+            </div>
+        </div>
+        {% else %}
+        <table class="solved_problems_table">
+            <tbody class="table_body">
+                {% for problem in problems %}
+                {% if problem.show_problem %}
+                {% if problem.have_solution %}
+                <tr class="data-item">
+                    <td width="5%" class="number"><p class="number1"></p></td>
+                    <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' problem.problem_subject problem.id %}" class="go_problem">{{problem.source_problem}} <p style="float: right; margin-right: 30px; color: red;">ID: {{problem.id}}</p></a></td>
+                    <td width="10%" class="follows_text"><p id="follows">{{problem.problem_views}}</p></td>
+                    <td width="10%" class="view"><button class="view_problem" data-problem-id="{{problem.id}}"><i class="gg-eye"></i></button></td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <table class="unsolved_problems_table">
+            <tbody class="table_body">
+                {% for problem in problems %}
+                {% if problem.show_problem %}
+                {% if problem.have_solution == False %}
+                <tr class="data-item">
+                    <td width="5%" class="number"><p class="number2"></p></td>
+                    <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' problem.problem_subject problem.id %}" class="go_problem">{{problem.source_problem}} <p style="float: right; margin-right: 30px; color: red;">ID: {{problem.id}}</p></a></td>
+                    <td width="10%" class="follows_text"><p id="follows">{{problem.problem_views}}</p></td>
+                    <td width="10%" class="view"><button class="view_problem" data-problem-id="{{problem.id}}"><i class="gg-eye"></i></button></td>
+                </tr>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="add_prob_btn" href="{% url 'add_problem' %}"><p class="plus_add">+</p> Add problem</a>
+        {% endif %}
+    </div>
+    {% if contest %}
+    <script src="/static/js/contests.js"></script>
+    {% else %}
+    <script src="/static/js/problems.js"></script>
+    {% endif %}
+</body>
+</html>

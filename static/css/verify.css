@@ -1,0 +1,237 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(57, 57, 57);
+}
+
+.all_checking_properties{
+    background-color: rgb(104, 104, 104);
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    box-shadow: 4px 6px 6px 4px rgba(107, 107, 107, 0.2);
+}
+
+.all_checking_properties h1{
+    color: white;
+}
+
+#checking_div{
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.problem_about_checking .verify_problem{
+    border-radius: 10px;
+    color: white;
+    background-color: green;
+    border:0;
+    cursor: pointer;
+    padding: 9px;
+    margin-left: 20px;
+}
+
+.problem_about_checking .delete_problem{
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    border:0;
+    cursor: pointer;
+    padding: 9px;
+    margin-left: 20px;
+}
+
+.all_checking_properties .problem_about_checking{
+    display: flex;
+    background-color: #33333a;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.problem_about_checking .link_to_problem{
+    text-decoration: none;
+    color: rgb(61, 61, 61);
+    font-size: 19px;
+    font-weight: 500;
+    background-color: rgb(216, 214, 214);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.all_checking_properties .solution_about_checking{
+    display: flex;
+    background-color: #33333a;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.solution_about_checking .link_to_solution{
+    text-decoration: none;
+    color: rgb(61, 61, 61);
+    font-size: 19px;
+    font-weight: 500;
+    background-color: rgb(216, 214, 214);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.solution_about_checking .verify_solution{
+    border-radius: 10px;
+    color: white;
+    background-color: green;
+    border:0;
+    cursor: pointer;
+    padding: 9px;
+    margin-left: 20px;
+}
+
+.solution_about_checking .delete_solution{
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    border:0;
+    cursor: pointer;
+    padding: 9px;
+    margin-left: 20px;
+}
+
+.all_checking_properties .reported_about_checking{
+    background-color: #33333a;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.reported_about_checking .link_to_report{
+    text-decoration: none;
+    color: rgb(61, 61, 61);
+    font-size: 19px;
+    font-weight: 500;
+    background-color: rgb(216, 214, 214);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.statuses_of_report{
+    margin-top: 20px;
+}
+
+.statuses_of_report p{
+    color: rgb(216, 214, 214);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.delete_report{
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    border:0;
+    cursor: pointer;
+    padding: 9px;
+    margin-top: 15px;
+}
+
+.all_checking_properties .contact_about_checking{
+    background-color: #33333a;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.contact_about_checking p{
+    font-size: 19px;
+    font-weight: 500;
+    color: rgb(216, 214, 214);
+}
+
+.contact_about_checking button{
+    border-radius: 10px;
+    color: white;
+    background-color: red;
+    border:0;
+    cursor: pointer;
+    padding: 9px;
+    margin-top: 15px;
+}
+
+#delete_div_cont_id{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.653);
+    z-index: 1000000;
+    display: none;
+    overflow-y: auto; 
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_all_container{
+    width: 30%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_all_container p{
+    color: #4a4abd;
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 9px;
+    display: block;
+    text-align: center;
+}
+
+.delete_group_functions,.delete_user_functions{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.accept_delete_user{
+    color: white;
+    background-color: red;
+    padding: 8px;
+    border-radius: 7px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.cancel_deleting_pro, .cancel_deleting_sol{
+    color: white;
+    background-color: green;
+    padding: 8px;
+    border-radius: 7px;
+    border: 0;
+    cursor: pointer;
+}
+
+@media (max-width: 1234px){
+    .delete_all_container{
+        width: 50%;
+    }
+}
+
+@media (max-width: 707px){
+    .delete_all_container{
+        width: 70%;
+    }
+}

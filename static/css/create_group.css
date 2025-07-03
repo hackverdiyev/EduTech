@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    background: #c6c3c3;
+}
+
+.create_group{
+    background-color: white;
+    margin: 0 auto;
+    width: 70%;
+    margin-top: 160px;
+    border-radius: 8px;
+    box-shadow: 6px 6px 6px 6px rgba(134, 134, 134, 0.3);
+    padding: 15px;
+}
+
+.label_group{
+    color: #4a4abd;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 7px 0;
+}
+
+.group_name{
+    width: 90%;
+    padding: 10px 14px;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 0.5px solid rgb(153, 153, 153);
+}
+.group_about{
+    width: 90%;
+    padding: 10px 14px;
+    font-size: 12px;
+    border-radius: 10px;
+    border: 0.5px solid rgb(153, 153, 153);
+}
+#group_subject_selected{
+    width: 90%;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 10px;
+    border: 0.5px solid rgb(153, 153, 153);
+}
+
+.submit_create{
+    border:0;
+    background-color: green;
+    padding: 10px 15px;
+    color: white;
+    border-radius: 8px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 800px){
+    .create_group{
+        width: 93%;
+    }
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Məsələlər</title>
+  <link rel="stylesheet" href="/static/css/problems.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://css.gg/css?=|comment|eye-alt|eye" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="problems">
+        <h1 class="head_prob">Subjects</h1>
+        <table class="subjects_table">
+            <tbody class="table_body">
+                {% for key,value in subjects.items %}
+                <tr><td><a href="{% url 'problems' key %}"><span>{{ value }}</span></a></td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="add_prob_btn" href="{% url 'add_problem' %}"><p class="plus_add">+</p> Add problem</a>
+    </div>
+</body>
+</html>

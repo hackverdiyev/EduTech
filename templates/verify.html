@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpus | Verify</title>
+    <link rel="stylesheet" href="/static/css/verify.css">
+    <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+</head>
+<body>
+    <div class="all_checking_properties">
+        <div class="added_problems_checking" id="checking_div">
+            <h1>Əlavə olunmuş problemlər</h1>
+            {% for problem in problems %}
+            <form method="post" class="problem_about_checking">
+                <a href="{% url 'problem_view' problem.problem_subject problem.id %}" target="_blank"  class="link_to_problem">{{ problem.source_problem }} / ID: {{ problem.id }}</a>
+                <button name="verify_problem" class="verify_problem" value="{{ problem.id }}">Sualı Təsdiqlə</button>
+                <button class="delete_problem" data-problem-id="{{ problem.id }}" type="button">Sualı Sil</button>
+                <div class="delete_problem_div{{problem.id}}" id="delete_div_cont_id">
+                    <div class="delete_all_container">
+                      <div class="delete_centering">
+                        <p>{{ problem.source_problem}} adlı məsələni silmək istədiyinizə əminsiniz?</p>
+                        <div class="delete_user_functions">
+                          <button class="cancel_deleting_pro" data-problem-id="{{ problem.id }}" type="button">Ləğv et</button>
+                          <button class="accept_delete_user" type="submit" name="delete_problem" value="{{ problem.id }}">Məsələni sil</button>
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+            </form>
+            {% endfor %}
+        </div>
+        <div class="added_solution_checking" id="checking_div">
+            <h1>Əlavə olunmuş həllər</h1>
+            {% for solution in solutions %}
+            <form method="post" class="solution_about_checking">
+                <a href="{% url 'problem_view' solution.problem.problem_subject solution.problem.id %}" target="_blank" class="link_to_solution">{{ solution.problem.source_problem }} / ID: {{ solution.id }}</a>
+                <button name="verify_solution" class="verify_solution" value="{{ solution.id }}">Həlli Təsdiqlə</button>
+                <button type="button" data-solution-id="{{ solution.id }}" class="delete_solution">Həlli Sil</button>
+                <div class="delete_solution_div{{solution.id}}" id="delete_div_cont_id">
+                    <div class="delete_all_container">
+                      <div class="delete_centering">
+                        <p>{{ solution.problem.source_problem }} adlı həlli silmək istədiyinizə əminsiniz?</p>
+                        <div class="delete_user_functions">
+                          <button class="cancel_deleting_sol" data-solution-id="{{ solution.id }}" type="button">Ləğv et</button>
+                          <button class="accept_delete_user" type="submit" name="delete_solution" value="{{ solution.id }}">Həlli sil</button>
+                        </div>
+                      </div>
+                    </div>
+                </div> 
+            </form>
+            {% endfor %}
+        </div>
+        {% if islogin.admin_tag %}
+        <div class="reported_questions_checking" id="checking_div">
+            <h1>Şikayət edilmiş suallar</h1>
+            {% for report in reports %}
+            <form method="post" class="reported_about_checking">
+                <br>
+                <a href="{% url 'problem_view' report.problem_reported.problem_subject report.problem_reported.id %}" target="_blank" class="link_to_report">{{ report.problem_reported.source_problem }} / ID: {{ report.problem_reported.id }}</a>
+                <div class="statuses_of_report">
+                    <p>Checkbox Problem: {{ report.checkbox_problem }}</p>
+                    <p>Checkbox Solution: {{ report.checkbox_solution }}</p>
+                    <p>Checkbox Content: {{ report.checkbox_content }}</p>
+                    <p>Checkbox Chat: {{ report.checkbox_chat }}</p>
+                    <p>Other: {{ report.other }}</p>
+                </div>
+                <button name="delete_report" class="delete_report" value="{{ report.id }}">Şikayəti Sil</button>
+            </form>
+            <br>
+            {% endfor %}
+        </div>
+        <div class="contact_messages_checking" id="checking_div">
+            <h1>Əlaqə mesajları</h1>
+            {% for contact in contacts %}
+            <form method="post" class="contact_about_checking">
+                <p>Full Name: {{ contact.full_name }} <br> Email: {{ contact.email }} <br> Id: {{ contact.id }}<br>Message: {{ contact.message }}</p>
+                <button name="delete_contact" value="{{ contact.id }}">Mesajı Sil</button>
+            </form>
+            <br>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const viewButtons = document.querySelectorAll('.delete_solution');
+        const closeButtons = document.querySelectorAll('.cancel_deleting_sol');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const solutionId = this.dataset.solutionId;
+                open_delete_solution(solutionId);
+            });
+        });
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const solutionId = this.dataset.solutionId;
+                close_delete_solution(solutionId);
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const viewButtons = document.querySelectorAll('.delete_problem');
+        const closeButtons = document.querySelectorAll('.cancel_deleting_pro');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const problemId = this.dataset.problemId;
+                console.log(problemId);
+                open_delete_problem(problemId);
+            });
+        });
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const problemId = this.dataset.problemId;
+                close_delete_problem(problemId);
+            });
+        });
+    });
+    function open_delete_problem(k){
+        var delete_div = document.querySelector('.delete_problem_div'+k.toString());
+        delete_div.style.display="flex";
+        delete_div.animate([{opacity:'0.0'}, {opacity:'1.0'}],
+        {duration: 500, fill:'forwards'});
+    }
+
+    function close_delete_problem(k){
+        var delete_div = document.querySelector('.delete_problem_div'+k.toString());
+        delete_div.style.display="none";
+    }
+    function open_delete_solution(k){
+        var delete_div = document.querySelector('.delete_solution_div'+k.toString());
+        delete_div.style.display="flex";
+        delete_div.animate([{opacity:'0.0'}, {opacity:'1.0'}],
+        {duration: 500, fill:'forwards'});
+    }
+
+    function close_delete_solution(k){
+        var delete_div = document.querySelector('.delete_solution_div'+k.toString());
+        delete_div.style.display="none";
+    }
+</script>
+</html>

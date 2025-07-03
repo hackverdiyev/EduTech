@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Reytinq cədvəli</title>
+  <link rel="stylesheet" href="/static/css/ranking.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="users_table">
+      <h1 class="head_rank">Ranking</h1>
+      <table class="all_users_table">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Username</th>
+            <th>Point</th>
+          </tr>
+        </thead>
+        <tbody class="table_body">
+            {% for user in users %}
+            <tr class="data-item">
+                <td width="5%" class="number_td"><p class="number"></p></td>
+                <td height="100%" width="50%" class="user_text">            
+                  {% if user.admin_tag %}
+                  <a href="{% url 'profile' user.username %}" class="go_user" style="color: red;">{{ user.username }}</a>
+                  {% elif user.teacher_tag %}
+                  <a href="{% url 'profile' user.username %}" class="go_user" style="color: blue;">{{ user.username }}</a>
+                  {% elif user.clever_tag %}
+                  <a href="{% url 'profile' user.username %}" class="go_user" style="color: green;">{{ user.username }}</a>
+                  {% elif user.olympian_tag %}
+                  <a href="{% url 'profile' user.username %}" class="go_user" style="color: purple;">{{ user.username }}</a>
+                  {% else %}
+                  <a href="{% url 'profile' user.username %}" class="go_user" style="color: black;">{{ user.username }}</a>
+                  {% endif %}                
+                <td width="10%"class="follows_text"><p id="follows">{{ user.point }}</p></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(){
+        users=document.getElementsByClassName("number");
+        for(var i=0; i<users.length; i++){
+          users[i].innerHTML=i+1;
+        }
+      })
+    </script>
+</body>
+</html>

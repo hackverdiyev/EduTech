@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpus | AI</title>
+    <link rel="stylesheet" href="/static/css/ai.css">
+    <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="ai_container">
+        <div class="ai_container_all">
+            <div class="ai_container_ai_head">
+                <h1 class="asking_ai_heading">AI teacher</h1>
+            </div>
+            <div class="ai_video">
+                <video width="70%" class="ai_video_content" id="vid" loop>
+                    <source src="/media/AI - Man.mp4" type="video/mp4">
+                </video>
+                <div class="text_ai_speaking" id="text_ai_appear"></div>
+            </div>
+            <div class="mic_mes_div_all">
+                <div class="message_toai_cont">
+                    <div class="text_message_toai">
+                        <textarea class="text_msg_inp_toai" id="text_for_ai" placeholder="Ask your question from AI teacher..." rows="1"></textarea>
+                    </div>
+                    <div class="voice_msg_toai">
+                        <buttton class="voice_msg_btn" onclick="GetSpeech(this)"><i class="bi bi-mic-fill"></i></buttton>
+                    </div>
+                    <div class="send_txt_msg_toai">
+                        <buttton class="txt_msg_btn" onclick="send_question()"><i class="bi bi-send"></i></buttton>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/ai.js"></script>
+</html>

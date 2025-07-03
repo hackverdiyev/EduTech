@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, ınıtial-scale=1.0">
+  <title>Olimpus | Profile</title>
+  <link rel="stylesheet" href="/static/css/profile.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://css.gg/css?=|comment|eye-alt|eye" rel="stylesheet">
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <div class="profile">
+    <div class="all_profile_properties">
+      <div class="all_pp_propert">
+        <h1 class="head_prof">Profile</h1>
+        <div class="filter_buttons">
+          <button class="account_about" onclick="show_profile()">Profile information</button>
+          <button class="pass_change" onclick="show_pass()">Change password</button>
+          <button class="problems_added" onclick="show_problems()">Added problems</button>
+          <button class="solutions_added" onclick="show_solutions()">Solved problems</button>
+        </div>
+      </div>
+      <div class="profile_about" data-default-id="{{ default }}">
+        <div class="section1">
+          <div class="pp_section">
+            <p class="plot_profile2">Profile picture</p>
+            <img class="profile_photo" id="photo_uploaded_preview" width="200px;" src="/media/{{ islogin.profile_photo }}" alt="">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <input type="file" id="profile_img" accept="image/png, image/jpeg, image/jpg" name="photo" style="display: none"/>
+              <div class="savebtns">
+                <label class="change_profile_photo" for="profile_img">Change profile photo</label>
+                <div class="delete_pp_save">
+                  <button type="submit" class="save_btn_profile">Save</button>
+                  <button class="delete_pp" name='delete'>Delete</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="user_about">
+            <div class="input_section">
+              <form method="post">
+                {% csrf_token %}
+                <p class="plot_profile3">Ad / Username / Email</p>
+                <div class="user_gmail">
+                  <input type="text" name="fullname" placeholder="Full name" value="{{ islogin.fullname }}">
+                  <button type="submit" class="save_changes">Save</button>
+                </div>
+              </form>
+              <form method="post">
+                {% csrf_token %}
+                <div class="user_gmail" style="margin-top: 8px">
+                  <input type="text" value="{{ islogin.username }}" name="username">
+                  <button type="submit" class="save_changes">Save</button>
+                </div>
+              </form>
+              {% if error == 6 %}
+              <p class="error">Username is unavailable.</p>
+              {% elif error == 7 %}
+              <p class="error">Username must be 4-20 symbol length.</p>
+              {% elif error == 8 %}
+              <p class="error">Username can only include English letters, <br> numbers, dot and underscore.</p>
+              {% elif error == 9 %}
+              <p class="error">Username must include at least 1 letter.</p>
+              {% endif %}
+              <form method="post">
+                {% csrf_token %}
+                <div class="user_gmail">
+                  <input type="email" class="change_gmail" name="email" value="{{ islogin.email }}">
+                  <button type="submit" class="save_changes">Save</button>
+                </div>
+              </form>
+              {% if error == 10 %}
+              <p class="error">Email already exists.</p>
+              {% elif error == 11 %}
+              <p class="error">Email is incorrect.</p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <div class="section2">
+          <div class="tags_section">
+            <p class="plot_tags">Tags</p>
+            {% if islogin.admin_tag %}
+            <a class="tags" style="background-color: red;">#Admin</a>
+            {% endif %}
+            {% if islogin.teacher_tag %}
+            <a class="tags" style="background-color: blue;">#Teacher</a>
+            {% endif %}
+            {% if islogin.clever_tag %}
+            <a class="tags" style="background-color: green;">#Clever</a>
+            {% endif %}
+            {% if islogin.olympian_tag %}
+            <a class="tags" style="background-color: purple;">#Olympian</a>
+            {% endif %}
+          </div>
+        </div>
+        <div class="add_tag_about">
+          <p class="add_tag">If you want to get #Clever tag, your point have to be at least 50 (You get 1 point for 1 problem, 3 point for 1 solution.)</p>
+          <p class="add_tag">If you are olympian or teacher you can contact us to get #Olympian tag or #Teacher tag from our email <a href="mailto:olimpus.aze@gmail.com" class="gmail_contact">olimpus.aze@gmail.com</a> or from <a href="{% url 'contact' %}">contact</a> page.</p>
+        </div>  
+        <div class="section3">
+            <a href="{% url 'logout' %}" class="logout_btn"><i class="ri-logout-box-line"></i>Log out</a>
+        </div>
+      </div>
+      <div class="passcode_change">
+        <h1 class="head_pass">Change password</h1>
+        <form method="post">
+          {% csrf_token %}
+          <div class="inputs">
+            <div class="input_container_change">
+             <input type="password" placeholder="Previous password" name="previous_password">
+            </div>
+            <div class="input_container_change">
+              <input type="password" placeholder="New password" name="password">
+            </div>
+            <div class="input_container_change">
+              <input type="password" placeholder="Repeat new password" name="password_repeat">
+            </div>
+          </div>
+          {% if success %}
+          <br><p class="success">Password changed successfully.</p>
+          {% elif error == 1 %}
+          <br><p class="error">Password is incorrect.</p>
+          {% elif error == 2 %}
+          <br><p class="error">Passwords does not match.</p>
+          {% elif error == 3 %}
+          <br><p class="error">Password must be 8-50 symbol length.</p>
+          {% elif error == 4 %}
+          <br><p class="error">Password can only include English letters, numbers,<br> dot and underscore.</p>
+          {% elif error == 5 %}
+          <br><p class="error">Password must include at least 1 capital letter,<br> 1 small letter and 1 number.</p>
+          {% endif %}
+          <button class="submit_change">Submit</button>
+        </form>
+
+      </div>
+      <div class="problems">
+         <table class="all_problems_table">
+            <tbody class="table_body">
+              {% for problem in user_problems %}
+              {% if problem.show_problem %}
+              <tr class="data-item">
+                  <td width="5%" class="number"><p class="number0">{{problem.id}}</p></td>
+                  <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' problem.problem_subject problem.id %}" class="go_problem">{{problem.source_problem}}</a></td>
+                  <td width="10%"class="follows_text"><p id="follows">{{problem.problem_views}}</p></td>
+                  <td width="10%" class="view"><button class="view_problem" data-problem-id="{{problem.id}}"><i class="gg-eye"></i></button></td>
+              </tr>
+              <div class="view_page{{problem.id}}" id="view_div">
+                  <div class="problem_summary">
+                      <div class="head_pr">
+                          <button id="close_view" class="close_viewpage" data-problem-id="{{problem.id}}"><i class="ri-close-fill"></i></button>
+                          <h1 class="sourceof_problem">{{problem.source_problem}}</h1>
+                      </div>
+                      <hr>
+                      {% if problem.problem_context %}
+                      <p class="problem_context">{{problem.problem_context}}</p>
+                      {% endif %}
+                      {% if problem.problem_context_img %}
+                      <img class="problem_photo" width="70%" src="{{ MEDIA_URL }}{{ problem.problem_context_img.url }}" alt="">
+                      {% endif %}
+                      <hr>
+                  </div>
+              </div>
+              {% endif %}
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="solutions">
+          <table class="all_problems_table">
+            <tbody class="table_body">
+              {% for solution in user_solutions %}
+              <tr class="data-item">
+                  <td width="5%" class="number"><p class="number1">{{solution.problem.id}}</p></td>
+                  <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' solution.problem.problem_subject solution.problem.id %}" class="go_problem">{{solution.problem.source_problem}}</a></td>
+                  <td width="10%"class="follows_text"><p id="follows">{{solution.problem.problem_views}}</p></td>
+                  <td width="10%" class="view"><button class="view_problem1" data-solution-id="{{solution.problem.id}}"><i class="gg-eye"></i></button></td>
+              </tr>
+              <div class="view_page1{{solution.problem.id}}" id="view_div">
+                  <div class="problem_summary">
+                      <div class="head_pr">
+                          <button id="close_view" class="close_viewpage1" data-solution-id="{{solution.problem.id}}"><i class="ri-close-fill"></i></button>
+                          <h1 class="sourceof_problem">{{solution.problem.source_problem}}</h1>
+                      </div>
+                      <hr>
+                      {% if solution.problem.problem_context %}
+                      <p class="problem_context">{{solution.problem.problem_context}}</p>
+                      {% endif %}
+                      {% if solution.problem.problem_context_img %}
+                      <img class="problem_photo" width="70%" src="{{ MEDIA_URL }}{{ solution.problem.problem_context_img.url }}" alt="">
+                      {% endif %}
+                      <hr>
+                  </div>
+              </div>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const viewButtons = document.querySelectorAll('.view_problem');
+        const closeButtons = document.querySelectorAll('.close_viewpage');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const problemId = this.dataset.problemId;
+                open_view(problemId);
+            });
+        });
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const problemId = this.dataset.problemId;
+                close_view(problemId);
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const viewButtons = document.querySelectorAll('.view_problem1');
+        const closeButtons = document.querySelectorAll('.close_viewpage1');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const solutionId = this.dataset.solutionId;
+                open_view1(solutionId);
+            });
+        });
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const solutionId = this.dataset.solutionId;
+                close_view1(solutionId);
+            });
+        });
+    });
+</script>
+<script src="/static/js/profile.js"></script>
+</body>
+</html>

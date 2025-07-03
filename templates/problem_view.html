@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olimpus | Problem</title>
+    <link rel="stylesheet" href="/static/css/problem_view.css">
+    <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="problem_container">
+        <div class="problem_container_head">
+            <p class="id_of_problem">Id:{{problem.id}}</p>
+            <div class="prb_txt">
+                <h2 class="problem_name">{{ problem.source_problem }}</h2>
+                {% if problem.user_added.admin_tag %}
+                <p class="add_use">User added: <a href="{% url 'profile' problem.user_added.username %}" style="color: red;">{{ problem.user_added.username }}</a></p>
+                {% elif problem.user_added.teacher_tag %}
+                <p class="add_use">User added: <a href="{% url 'profile' problem.user_added.username %}" style="color: blue;">{{ problem.user_added.username }}</a></p>
+                {% elif problem.user_added.clever_tag %}
+                <p class="add_use">User added: <a href="{% url 'profile' problem.user_added.username %}" style="color: green;">{{ problem.user_added.username }}</a></p>
+                {% elif problem.user_added.olympian_tag %}
+                <p class="add_use">User added: <a href="{% url 'profile' problem.user_added.username %}" style="color: purple;">{{ problem.user_added.username }}</a></p>
+                {% else %}
+                <p class="add_use">User added: <a href="{% url 'profile' problem.user_added.username %}" style="color: black;">{{ problem.user_added.username }}</a></p>
+                {% endif %}
+            </div>
+            <button class="report_problem" onclick="open_report()"><i class="bi bi-exclamation-circle-fill"></i></button>
+        </div>
+        <hr>
+        <div class="problem_context_container">
+            {% if problem.problem_context %}
+            <p class="problem_context_pharagraph">{{ problem.problem_context }}</p>
+            {% endif %}
+            {% if problem.problem_context_img %}
+            <img width="100%" src="{{ problem.problem_context_img.url }}" alt="problem_photo" class="problem_img">
+            {% endif %}
+        </div>
+        <hr>
+        {% if problem.have_solution or verify %}
+        <div class="solution_context_container closed_solution">
+            {% if solution.user_solved.admin_tag %}
+            <p class="add_use2">User solved: <a href="{% url 'profile' solution.user_solved.username %}" style="color: red;">{{ solution.user_solved.username }}</a></p>
+            {% elif solution.user_solved.teacher_tag %}
+            <p class="add_use2">User solved: <a href="{% url 'profile' solution.user_solved.username %}" style="color: blue;">{{ solution.user_solved.username }}</a></p>
+            {% elif solution.user_solved.clever_tag %}
+            <p class="add_use2">User solved: <a href="{% url 'profile' solution.user_solved.username %}" style="color: green;">{{ solution.user_solved.username }}</a></p>
+            {% elif solution.user_solved.olympian_tag %}
+            <p class="add_use2">User solved: <a href="{% url 'profile' solution.user_solved.username %}" style="color: purple;">{{ solution.user_solved.username }}</a></p>
+            {% else %}
+            <p class="add_use2">User solved: <a href="{% url 'profile' solution.user_solved.username %}" style="color: black;">{{ solution.user_solved.username }}</a></p>
+            {% endif %}
+            {% if solution.solution_path_video %}
+            <video width="80%" controls="controls">
+                <source src="{{ solution.solution_path_video.url }}" type="video/mp4" />
+            </video>
+            <br>
+            {% endif %}
+            {% if solution.solution_path_img %}
+            <img width="80%" src="{{ solution.solution_path_img.url }}" width="100%" alt="solution_image" class="solution_image">
+            {% endif %}
+            {% if solution.solution_cont %}
+            <p class="problem_context_pharagraph">{{ solution.solution_cont }}</p>
+            {% endif %}
+        </div>
+        <button class="solution_context_btn_open"><span class="solution_cont_span">Show problem</span><i class="bi bi-chevron-down" id="feature_icon"></i></button>
+        {% else %}
+        <hr>
+        <p class="about_add_solution">The first correct solution to the problem is accepted. The correctness of the solution <br> is verified within a maximum of 1 week and you increase your rating.<br><span class="hell_sayi_about"> Number of solutions submitted for this problem: {{ solution|length }}</span></p>
+        <div class="add_solution_btn_cont">
+            <a type="submit" href="{% url 'add_solution' problem.id %}" class="submit_solution">Send solution</a>
+            <form method="post">
+                <button type="submit" class="askingAI_btn" name="askai">Ask AI</button>
+            </form>
+            {% if ai %}
+            <div class="view_ai">
+                <div class="solution_summary">
+                    <div class="head_sol_ai">
+                        <button class="close_viewpage" onclick="close_div_ai()"><i class="ri-close-fill"></i></button>
+                        <h1>AI</h1>
+                    </div>
+                    <hr>
+                    <div class="asking_ai" id="asking_ai" data-ai-id="{{ai}}"></div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="report_prob" id="report_view">
+        <div class="report_head">
+            <div class="head_re">
+                <button id="close_view" class="close_report" onclick="close_report()"><i class="ri-close-fill"></i></button>
+                <h1 class="head_report">Report</h1>
+            </div>
+            <hr>
+            <div class="check_boxes_input">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="input_rows">
+                        <input type="checkbox" name="report_problem" id="problem_cont">
+                        <label for="problem_cont">Inaccuracy in the context of the solution</label>
+                    </div>
+                    <div class="input_rows">
+                        <input type="checkbox" name="report_solution" id="solution_cont">
+                        <label for="solution_cont">Inaccuracy in the context of the solution</label>
+                    </div>
+                    <div class="input_rows">
+                        <input type="checkbox" name="report_content" id="unrelated_cont">
+                        <label for="unrelated_cont">Inappropriate content</label>
+                    </div>
+                    <div class="input_rows">
+                        <input type="checkbox" name="report_chat" id="chat_cont">
+                        <label for="chat_cont">Using unethical words in the chat section</label>
+                    </div>
+                    <div class="input_rows">
+                        <input type="checkbox" id="other_report_cont">
+                        <label for="other_report_cont" for="report_other">Other:</label>
+                    </div>
+                    <textarea name="report_other" rows="6" id="report_other_textarea" disabled></textarea><br>
+                    <button type="submit" name="report" class="submit_report">Submit</button>
+                </form>
+            </div>
+            <hr>
+        </div>
+    </div>
+
+    {% include 'chat.html' %}
+    
+    <script>
+
+        report=document.getElementsByClassName("report_prob")[0];
+        function open_report(){
+            report.style.display = "block";
+            view_div.animate([{opacity:'0.0'}, {opacity:'1.0'}],
+            {duration: 500, fill:'forwards'});
+        }
+
+        function close_report(){
+            report.style.display = "none";
+        }
+    </script>
+    <script src="/static/js/problem_view.js"></script>
+</body>
+</html>

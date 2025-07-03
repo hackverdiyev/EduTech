@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profil | {{ username.username }}</title>
+  <link rel="stylesheet" href="/static/css/profile.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://css.gg/css?=|comment|eye-alt|eye" rel="stylesheet">
+</head>
+<body>
+{% include 'navbar.html' %}
+<div class="profile">
+  <h1 class="head_prof">Profile</h1>
+  <div class="filter_buttons">
+      <button class="account_about" onclick="show_profile()">Profile information</button>
+      <button class="problems_added" onclick="show_problems()">Added problems</button>
+      <button class="solutions_added" onclick="show_solutions()">Solved problems</button>
+  </div>
+  <div class="profile_about" data-default-id="{{ default }}">
+    <div class="section1" style="margin: 0 auto;">
+      <div class="pp_section">
+        <p class="plot_profile2">Profile picture</p>
+        <img class="profile_photo" width="200px;" src="/media/{{ username.profile_photo }}" alt="">
+      </div>
+      <div class="user_about">
+        <div class="input_section">
+          {% if username.fullname != "" %}
+          <p class="plot_profile3">Full Name: {{ username.fullname }}</p>
+          {% endif %}
+          <p class="plot_profile3">Username: {{ username.username }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="section2">
+      <div class="tags_section" style="margin: 0 auto;">
+        <p class="plot_tags">Tags</p>
+        {% if username.admin_tag %}
+        <a class="tags" style="background-color: red;">#Admin</a>
+        {% endif %}
+        {% if username.teacher_tag %}
+        <a class="tags" style="background-color: blue;">#Teacher</a>
+        {% endif %}
+        {% if username.clever_tag %}
+        <a class="tags" style="background-color: green;">#Clever</a>
+        {% endif %}
+        {% if username.olympian_tag %}
+        <a class="tags" style="background-color: purple;">#Olympian</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="problems">
+    <table class="all_problems_table">
+       <tbody class="table_body">
+         {% for problem in user_problems %}
+         {% if problem.show_problem %}
+         <tr class="data-item">
+             <td width="5%" class="number"><p class="number0">{{problem.id}}</p></td>
+             <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' problem.problem_subject problem.id %}" class="go_problem">{{problem.source_problem}}</a></td>
+             <td width="10%"class="follows_text"><p id="follows">{{problem.problem_views}}</p></td>
+             <td width="10%" class="view"><button class="view_problem" data-problem-id="{{problem.id}}"><i class="gg-eye"></i></button></td>
+         </tr>
+         <div class="view_page{{problem.id}}" id="view_div">
+             <div class="problem_summary">
+                 <div class="head_pr">
+                     <button id="close_view" class="close_viewpage" data-problem-id="{{problem.id}}"><i class="ri-close-fill"></i></button>
+                     <h1 class="sourceof_problem">{{problem.source_problem}}</h1>
+                 </div>
+                 <hr>
+                 {% if problem.problem_context %}
+                 <p class="problem_context">{{problem.problem_context}}</p>
+                 {% endif %}
+                 {% if problem.problem_context_img %}
+                 <img class="problem_photo" width="70%" src="{{ MEDIA_URL }}{{ problem.problem_context_img.url }}" alt="">
+                 {% endif %}
+                 <hr>
+             </div>
+         </div>
+         {% endif %}
+         {% endfor %}
+     </tbody>
+   </table>
+ </div>
+ <div class="solutions">
+     <table class="all_problems_table">
+       <tbody class="table_body">
+         {% for solution in user_solutions %}
+         <tr class="data-item">
+             <td width="5%" class="number"><p class="number1">{{solution.problem.id}}</p></td>
+             <td height="100%" width="50%" class="problem_text"><a href="{% url 'problem_view' solution.problem.problem_subject solution.problem.id %}" class="go_problem">{{solution.problem.source_problem}}</a></td>
+             <td width="10%"class="follows_text"><p id="follows">{{solution.problem.problem_views}}</p></td>
+             <td width="10%" class="view"><button class="view_problem1" data-solution-id="{{solution.problem.id}}"><i class="gg-eye"></i></button></td>
+         </tr>
+         <div class="view_page1{{solution.problem.id}}" id="view_div">
+             <div class="problem_summary">
+                 <div class="head_pr">
+                     <button id="close_view" class="close_viewpage1" data-solution-id="{{solution.problem.id}}"><i class="ri-close-fill"></i></button>
+                     <h1 class="sourceof_problem">{{solution.problem.source_problem}}</h1>
+                 </div>
+                 <hr>
+                 {% if solution.problem.problem_context %}
+                 <p class="problem_context">{{solution.problem.problem_context}}</p>
+                 {% endif %}
+                 {% if solution.problem.problem_context_img %}
+                 <img class="problem_photo" width="70%" src="{{ MEDIA_URL }}{{ solution.problem.problem_context_img.url }}" alt="">
+                 {% endif %}
+                 <hr>
+             </div>
+         </div>
+         {% endfor %}
+     </tbody>
+   </table>
+ </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const viewButtons = document.querySelectorAll('.view_problem');
+        const closeButtons = document.querySelectorAll('.close_viewpage');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const problemId = this.dataset.problemId;
+                open_view(problemId);
+            });
+        });
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const problemId = this.dataset.problemId;
+                close_view(problemId);
+            });
+        });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const viewButtons = document.querySelectorAll('.view_problem1');
+        const closeButtons = document.querySelectorAll('.close_viewpage1');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const solutionId = this.dataset.solutionId;
+                open_view1(solutionId);
+            });
+        });
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const solutionId = this.dataset.solutionId;
+                close_view1(solutionId);
+            });
+        });
+    });
+</script>
+<script src="/static/js/profile_view.js"></script>
+</body>
+</html>

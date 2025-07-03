@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Qruplar</title>
+  <link rel="stylesheet" href="/static/css/groups_main.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+  <link href="https://css.gg/css?=|comment|eye-alt|eye" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <div class="group_container">
+        {% if groups or requests %}
+        <div class="groups_and_head">
+          <h1 class="groups_heading">Your groups</h1>
+          <div class="groups">
+            {% for group in requests %}
+            <div class="group">
+              <div class="head_group">
+                <h3 class="group_name_text">{{group.name}}</h3>
+              </div>
+              <hr>
+              <div class="group_features">
+                <div class="group_features_main">
+                  <p class="group_feature_text">{{ group.about }}</p>
+                  <div class="group_type_container">
+                    {% if group.subject == "all" %}
+                    <a class="group_type">General</a>
+                    {% else %}
+                    {% for key,value in subjects.items %}
+                    {% if group.subject == key %}
+                    <a class="group_type">{{ value }}</a>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <p class="created_by_text">Created by: 
+                  {% if group.creator.admin_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: red;">{{group.creator.username}}</a>
+                  {% elif group.creator.teacher_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: blue;">{{group.creator.username}}</a>
+                  {% elif group.creator.clever_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: green;">{{group.creator.username}}</a>
+                  {% elif group.creator.olympian_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: purple;">{{group.creator.username}}</a>
+                  {% else %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: black;">{{group.creator.username}}</a>
+                  {% endif %}
+                </p>
+              </div>
+              <hr>
+              <div class="group_footer">
+                <div class="group_active_btn">
+                  <form method="post">
+                    {% csrf_token %}
+                    <button name="join" class="join_btn" value="{{ group.id }}">Accept</button>
+                    <button name="deny" class="deny_btn" value="{{ group.id }}">Deny</button>
+                  </form>
+                </div>
+                <div class="group_participants">
+                  <img src="/media/{{ group.creator.profile_photo }}">
+                  <!--<div class="other_persons_group">+3</div>-->
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            {% for group in groups %}
+            <div class="group">
+              <div class="head_group">
+                <h3 class="group_name_text">{{group.name}}</h3>
+                {% if group.creator != islogin %}
+                <button class="delete_group" data-group-id="{{group.id}}"><strong><i class="bi bi-box-arrow-right"></i></strong></button>
+                {% endif %}
+              </div>
+              <div class="delete_group_div{{ group.id }}" id="delete_div_cont_id">
+                <div class="delete_all_container">
+                  <div class="delete_centering">
+                    <p>Are you sure you want to leave {{group.name}}?</p>
+                    <div class="delete_group_functions">
+                      <button class="cancel_deleting" data-group-id="{{group.id}}">Cancel</button>
+                      <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" value="{{ group.id }}" class="submit_delete_group" name="leave">Leave</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="group_features">
+                <div class="group_features_main">
+                  <p class="group_feature_text">{{ group.about }}</p>
+                  <div class="group_type_container">
+                    {% if group.subject == "all" %}
+                    <a class="group_type">General</a>
+                    {% else %}
+                    {% for key,value in subjects.items %}
+                    {% if group.subject == key %}
+                    <a class="group_type">{{ value }}</a>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+                <p class="created_by_text">Created by: 
+                  {% if group.creator.admin_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: red;">{{group.creator.username}}</a>
+                  {% elif group.creator.teacher_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: blue;">{{group.creator.username}}</a>
+                  {% elif group.creator.clever_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: green;">{{group.creator.username}}</a>
+                  {% elif group.creator.olympian_tag %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: purple;">{{group.creator.username}}</a>
+                  {% else %}
+                  <a href="{% url 'profile' group.creator.username %}" style="color: black;">{{group.creator.username}}</a>
+                  {% endif %}
+                </p>
+              </div>
+              <hr>
+              <div class="group_footer">
+                <div class="group_active_btn">
+                  <form method="post">
+                    {% csrf_token %}
+                    <button name="enter" class="enter_the_room" value="{{ group.id }}">Enter to the group</button>
+                  </form>
+                </div>
+                <div class="group_participants">
+                  <img src="/media/{{group.creator.profile_photo}}">
+                  <!--<div class="other_persons_group">+3</div>-->
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        {% else %}
+        <div class="all_groups">
+          <p class="no_group">No Groups Founded</p>
+        </div>
+        {% endif %}
+        <a class="add_group_btn" href="{% url 'create_group' %}"><p class="plus_add">+</p>Add group</a>
+    </div>
+    <script src="/static/js/groups_main.js"></script>
+</body>
+</html>

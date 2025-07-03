@@ -1,0 +1,283 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.all_groups{
+    width: 60%;
+    margin: 0 auto;
+    padding: 140px;
+    margin-top: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.82);
+    border-radius: 50px;
+}
+
+.all_groups .no_group{
+    color: #4a4abd;
+    font-weight: 600;
+    text-align: center;
+    font-size: 60px;
+}
+
+.groups_and_head{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 150px;
+    margin-bottom: 50px;
+}
+
+.groups_and_head .groups_heading{
+    color: white;
+    text-align: center;
+}
+
+.groups{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.group{
+    background-color: white;
+    border-radius: 20px;
+    width: 350px;
+    height: 300px;
+}
+
+.head_group{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    height: 17%;
+    max-height: 17%;
+}
+
+hr{
+    color: rgba(130, 130, 130, 0.621);
+    border: 1px dashed;
+}
+
+.group_name_text{
+    color: #4a4abd;
+    max-width: 90%;
+    width: 90%;
+    padding-left: 10px;
+}
+
+.delete_group{
+    background-color: transparent;
+    border:0;
+    color: red;
+    cursor: pointer;
+    float: right;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.group_features{
+    padding: 10px;
+    height: 65%;
+    max-height: 65%;
+}
+
+.group_feature_text{
+    color: rgb(67, 67, 67);
+}
+
+.group_features_main{
+    height: 86%;
+    max-height: 86%;
+}
+
+.group_type{
+    background-color: #bd6604;
+    color: white;
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.group_type_container{
+    margin-top: 10px;
+}
+
+.group_footer{
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    height: 18%;
+}
+
+.group_active_btn{
+    width: 76%;
+    height: 100%;
+}
+
+.group_active_btn form{
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.join_btn{
+    border:0;
+    background-color: green;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.deny_btn{
+    border:0;
+    background-color: red;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.group_participants{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.group_participants img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    position:absolute;
+    z-index: 100;
+}
+
+.other_persons_group{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #4a4abd;
+    color: white;
+    position: absolute;
+    z-index: 103;
+    margin-left: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.enter_the_room{
+    border:0;
+    background-color: green;
+    color: white;
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.add_group_btn{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #4a4abd;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus_add{
+    font-size: 17px;
+    padding-right: 4px;
+}
+
+#delete_div_cont_id{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.653);
+    z-index: 1000000;
+    display: none;
+    overflow-y: auto; 
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_all_container{
+    width: 30%;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete_all_container p{
+    text-align: center;
+    color: #4a4abd;
+    font-size: 20px;
+    font-weight: 600;
+    padding-top: 9px;
+    display: block;
+}
+
+.delete_group_functions{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.delete_group_functions form .submit_delete_group{
+    color: white;
+    background-color: red;
+    padding: 8px;
+    border-radius: 7px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
+.delete_group_functions .cancel_deleting{
+    color: white;
+    background-color: green;
+    padding: 8px;
+    border-radius: 7px;
+    border: 0;
+    cursor: pointer;
+}
+
+
+@media (max-width: 1234px){
+    .delete_all_container{
+        width: 50%;
+    }
+}
+
+@media (max-width: 707px){
+    .delete_all_container{
+        width: 70%;
+    }
+}

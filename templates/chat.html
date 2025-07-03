@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/static/css/chat.css">
+<div class="chat_messages">
+    <div class="chat_container">
+        <h1 class="chat_head">Chat</h1>
+        <form method="post" class="send_msg_frm">
+            {% csrf_token %}
+            {% if islogin == False %}
+            <textarea type="text" name="message" cols="80" rows="1" placeholder="Login for sharing your ideas" class="mes_input" disabled></textarea>
+            {% else %}
+            <img src="/media/{{ islogin.profile_photo }}" alt="profile_photo" class="person_profile">
+            <textarea type="text" name="message" cols="80" rows="1" placeholder="Share your ideas" class="mes_input"></textarea>
+            {% endif %}
+            <button type="submit" class="send_msg" name="chat">Send <i class="bi bi-send"></i></button>
+        </form>
+        <div class="messages_sent">
+            {% if messages %}
+            {% for message in messages %}
+            <div class="message_sent_cont">
+                <div class="person_sent">
+                    <img src="/media/{{ message.user_added.profile_photo }}" alt="profile_photo" class="person_profile">
+                    <div class="texts_message">
+                        {% if message.user_added.admin_tag %}
+                        <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: red;">{{ message.user_added.username }}</a>
+                        {% elif message.user_added.teacher_tag %}
+                        <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: blue;">{{ message.user_added.username }}</a>
+                        {% elif message.user_added.clever_tag %}
+                        <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: green;">{{ message.user_added.username }}</a>
+                        {% elif message.user_added.olympian_tag %}
+                        <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: purple;">{{ message.user_added.username }}</a>
+                        {% else %}
+                        <a href="{% url 'profile' message.user_added.username %}" class="user" style="color: black;">{{ message.user_added.username }}</a>
+                        {% endif %}
+                        <p class="message_text">{{ message.message }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p class="no_message">No messages</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

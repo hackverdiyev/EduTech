@@ -1,0 +1,431 @@
+.problems{
+    margin: 0 auto;
+    margin-top: 7%;
+    height: auto;
+    width: 70%;
+    padding: 30px;
+    padding-top: 20px;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.problems .head_prob{
+    color: white;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.problems .filter_buttons{
+    height: auto;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.problems .filter_buttons button{
+    padding: 10px;
+    background: white;
+    color: #4a4abd;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.problems .filter_buttons button:first-child{
+    margin-left: 0;
+}
+
+.problems .filter_buttons .solved_problems{
+    background-color: #4a4abd;
+    color: white;
+}
+
+.problems .filter_buttons .unsolved_problems{
+    background-color: #4a4abd;
+    color: white;
+}
+
+.problems .filter_buttons .chat{
+    background-color: #4a4abd;
+    color: white;
+}
+
+.problems table{
+    border-collapse: collapse;
+    margin: auto;
+    width: 98%;
+    border-radius: 1em;
+}
+.problems .all_problems_table{
+    display:table;
+}
+
+.problems .solved_problems_table{
+    display:none;
+}
+
+.problems .unsolved_problems_table{
+    display:none;
+}
+
+.chat_messages{
+    margin-top: 10px;
+    width: 100%;
+    display: none;
+}
+
+.messages_sent{
+    margin-top: 0;
+    margin-bottom: 20px;
+    height: 300px;
+    overflow: auto;
+}
+
+table tbody{
+    background-color: rgb(255, 255, 255);
+}
+
+table tbody tr{
+    border-bottom: solid rgba(206, 197, 197, 0.708) 1px;
+    transition: 1s ease;
+}
+
+.back_to_group{
+    text-decoration: none;
+    color:white;
+}
+
+.back_to_group:hover{
+    text-decoration: underline;
+}
+
+.subjects_table{
+    border-collapse: collapse;
+    margin: auto;
+    width: 98%;
+    overflow: hidden;
+    border: 3px solid #000000;
+    box-shadow: 0;
+}
+
+.subjects_table tr td{
+    text-align: center;
+    padding: 20px 400px;
+}
+
+.subjects_table tr td a{
+    text-decoration: none;
+    color: #242474;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.subjects_table tr td a span{
+    text-align: center;
+}
+
+table tbody tr:last-child{
+    border-bottom: 0;
+}
+table tbody tr td{
+    text-align: center;
+    padding: 20px;
+}
+
+table tbody tr .problem_text{
+    padding: 0;
+}
+
+table tbody tr .problem_text a{
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
+
+table tbody tr .number{
+    background-color:#4a4abd;
+}
+
+table tr:first-child td:first-child{
+    text-align: center;
+    border-top-left-radius: 1em;
+}
+
+table tr:last-child td:first-child{
+    text-align: center;
+    border-bottom-left-radius: 1em;
+}
+
+table tr:first-child td:last-child{
+    text-align: center;
+    border-top-right-radius: 1em;
+}
+
+table tr:last-child td:last-child{
+    text-align: center;
+    border-bottom-right-radius: 1em;
+}
+
+table tbody tr .number p{
+    font-weight: 700;
+    color: white;
+    background-color:#4a4abd;
+}
+
+table tbody tr td .go_problem{
+    display: block; 
+    padding: 10px 0 10px 70px;
+    background-color: rgba(255, 255, 255, 0);
+    color: #4a4abd;
+    border: 0;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+table tbody tr:hover{
+    background-color: rgba(30, 29, 29, 0.185)
+}
+
+table tbody tr td .view_problem{
+    color: #4a4abd;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+#view_div{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.653);
+    z-index: 1000000;
+    display: none;
+    overflow-y: auto; 
+}
+
+#view_div .problem_summary{
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    width: 70%;
+    height: auto;
+    background-color: white;
+    border-radius: 20px;
+    padding: 50px;
+    padding-bottom: 20px;
+    padding-top: 15px;
+}
+
+
+
+#view_div .problem_summary .head_pr .close_viewpage{
+    float: right;
+    margin: 0;
+    border:0;
+    font-size: 35px;
+    background-color: transparent;
+    color: rgb(165, 165, 165);
+    text-align: center;
+    cursor: pointer;
+}
+
+#view_div .problem_summary h1{
+    color: #4a4abd;
+    margin-bottom: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+
+#view_div .problem_summary img{
+    margin: auto;
+    display: block;
+    margin-bottom: 10px;
+}
+
+#view_div .problem_summary .problem_context{
+    padding: 30px;
+}
+
+#view_div .problem_summary p:last-child{
+    text-align: center;
+    margin-top: 20px;
+    color:rgba(0, 0, 0, 0.393);
+    font-size: 17x;
+    font-weight: 500;
+}
+
+.problems .add_prob_btn{
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #4a4abd;
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus_add{
+    font-size: 17px;
+    padding-right: 4px;
+}
+
+.search_engine{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #4a4abd;
+    border-radius: 10px;
+    width: 295px;
+}
+
+.search_text{
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 250px;
+    border: 0px solid rgb(110, 110, 110);
+    color: #151520;
+}
+
+.filter_buttons .search_engine .search_btn{
+    background-color: #4a4abd;
+    color: white;
+    padding: 10px;
+    margin-left: 0;
+}
+
+@media (max-width: 1390px){
+    .subjects_table tr td{
+        padding: 20px 200px;
+    }
+    .problems{
+        margin-top: 10%;
+    }
+}
+
+@media (max-width: 1515px){
+    .subjects_table tr td{
+        padding: 20px 300px;
+    }
+}
+
+@media (max-width: 1230px){
+    .subjects_table tr td {
+        padding: 20px 130px;
+    }
+}
+
+@media (max-width: 387px){
+    .subjects_table tr td {
+        padding: 20px 0px;
+    }
+    .problems{
+        width: 99%;
+    }
+}
+
+@media (max-width: 860px){
+    .subjects_table tr td{
+        padding: 20px 100px;
+    }
+}
+
+@media (max-width: 590px){
+    .subjects_table tr td {
+        padding: 20px 90px;
+    }
+}
+
+@media (max-width: 452px){
+    .subjects_table{
+        width: 100%;
+    }
+    .subjects_table tr td {
+        padding: 20px 70px;
+    }
+    .problems{
+        margin-top: 30%;
+    }
+}
+
+@media (max-width:1077px){
+    .problems{
+        margin-top: 15%;
+    }
+}
+
+@media (max-width:1032px){
+    table tbody tr td .go_problem{
+        padding: 10px 0 10px 30px;
+    }
+    .problems{
+        width: 80%;
+    }
+    #view_div .problem_summary{
+        width: 80%;
+    }
+}
+
+@media (max-width:871px){
+    #view_div .problem_summary{
+        width: 90%;
+    }
+}
+
+@media (max-width:774px){
+    #view_div .problem_summary{
+        width: 98%;
+    }
+}
+
+@media (max-width: 807px){
+    .problems{
+        width: 90%;
+    }
+}
+
+@media (max-width: 683px){
+    .problems .filter_buttons .unsolved_problems{
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 669px){
+    .problems{
+        margin-top: 22%;
+    }
+}
+
+@media (max-width: 600px){
+    .problems{
+        width: 100%;
+    }
+}
+
+@media (max-width: 436px){
+    .problems{
+        margin-top: 27%;
+    }
+}
+
+@media (max-width: 404px){
+    .problems .filter_buttons .solved_problems{
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

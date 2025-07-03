@@ -1,0 +1,215 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    background: #c6c3c3;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    height: auto;
+    border-radius: 30px;
+    margin-top: 7.25%;
+    margin-bottom: 30px;
+    background-color: #ebe8e8;
+}
+
+.place{
+    margin-top: 30px;
+    background-color: #ebe8e8;
+    box-shadow: 0px 16px 16px 0px rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    width: 500px;
+    height: auto;
+    padding-bottom: 30px;
+    border: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login_place{
+    margin-top: 11%;
+}
+
+.place .Title{
+    margin-top: 13px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.place .input_data{
+    margin-top: 15px;
+}
+
+.place .input_data input{
+    margin-top: 15px;
+    width: 400px;
+    border: 0.5px solid #14703042;
+    border-radius: 10px;
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.2);
+    font-size: 14px;
+    padding: 13px;
+}
+
+.place .input_data input:nth-child(1){
+    margin-top: 0px;
+}
+
+.place .input_data input:last-child{
+    margin-bottom: 0;
+}
+
+.place button{
+    margin-top: 15px;
+    padding: 13px 15px;
+    border-radius: 18px;
+    font-size: 17px;
+    font-weight: 400;
+    width: 150px;
+    background-color: #4a4abd;
+    border: 0;
+    box-shadow: 0px 10px 10px 0px rgba(2, 58, 0, 0.2);
+    color: white;
+    cursor: pointer;
+    align-items: center;
+    transition-duration: 0.6s;
+}
+
+.place button:hover{
+    background-color: white;
+    color: #4a4abd;
+    font-weight: 700;
+}
+
+.place .go_opposite{
+    margin-top: 20px;
+}
+
+.error{
+    text-align: center;
+    color: red;
+}
+#place_select{
+    margin-top: 11%;
+}
+
+#restore_place{
+    margin-top: 12%;
+}
+
+@media (max-width: 1515px){
+    form{
+        margin-top: 10%;
+    }
+    #login_place{
+        margin-top: 11%;
+    }
+    #restore_place{
+        margin-top: 12%;
+    }
+    #place_verification{
+        margin-top: 11%;
+    }
+    #place_select{
+        margin-top: 12%;
+    }
+}
+
+@media (max-width: 1215px){
+    form{
+        margin-top: 16%;
+    }
+    #login_place{
+        margin-top: 17%;
+    }
+    #restore_place{
+        margin-top: 18%;
+    }
+    #place_verification{
+        margin-top: 17%;
+    }
+    #place_select{
+        margin-top: 19%;
+    }
+}
+
+@media (max-width: 814px){
+    form{
+        margin-top: 20%;
+    }
+    #login_place{
+        margin-top: 21%;
+    }
+    #restore_place{
+        margin-top: 22%;
+    }
+    #place_verification{
+        margin-top: 21%;
+    }
+    #place_select{
+        margin-top: 23%;
+    }
+}
+
+@media (max-width: 576px){
+    form{
+        margin-top: 26%;
+    }
+    #login_place{
+        margin-top: 27%;
+    }
+    #restore_place{
+        margin-top: 28%;
+    }
+    #place_select{
+        margin-top: 29%;
+    }
+    .place{
+        width: 400px;
+    }
+    .place .input_data input{
+        width: 350px;
+    }
+    #place_verification{
+        margin-top: 29%;
+    }
+}
+
+@media (max-width: 432px){
+    form{
+        margin-top: 33%;
+    }
+    #login_place{
+        margin-top: 34%;
+    }
+    #restore_place{
+        margin-top: 35%;
+    }
+    #place_verification{
+        margin-top: 36%;
+    }
+    #place_select{
+        margin-top: 36%;
+    }
+    .place{
+        width: 340px;
+    }
+    .place .input_data input{
+        width: 290px;
+    }
+
+}

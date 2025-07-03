@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Olimpus | Register</title>
+  <link rel="stylesheet" href="/static/css/forms.css">
+  <link rel="shortcut icon" href="/static/images/logo2.png" type="image/x-icon">
+</head>
+<body>
+  {% include 'navbar.html' %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="place">
+      <img src="/static/images/logo2.png" style="height: 50px;" alt="Logo">
+      <p class="Title">Qeydiyyat</p>
+      <div class="input_data">
+        <input name="fullname" type="text" placeholder="Full name (optional)"><br>
+        <input name="username" type="text" placeholder="Username"><br>
+        <input name="email" type="email" placeholder="Email"><br>
+        <input name="password" type="password" placeholder="Password"><br>
+        <input name="password_repeat" type="password" placeholder="Repeat Password"><br>
+        {% if error == 1 %}
+        <br><p class="error">Username is unavailable.</p>
+        {% elif error == 2 %}
+        <br><p class="error">Username must be 4-20 symbol length.</p>
+        {% elif error == 3 %}
+        <br><p class="error">Username can only include English letters, numbers, dot and underscore.</p>
+        {% elif error == 4 %}
+        <br><p class="error">Username must include at least 1 letter.</p>
+        {% elif error == 5 %}
+        <br><p class="error">Email already exists.</p>
+        {% elif error == 6 %}
+        <br><p class="error">Email is incorrect.</p>
+        {% elif error == 7 %}
+        <br><p class="error">Passwords does not match.</p>
+        {% elif error == 8 %}
+        <br><p class="error">Password must be 8-50 symbol length.</p>
+        {% elif error == 9 %}
+        <br><p class="error">Password can only include English letters, numbers,<br> dot and underscore.</p>
+        {% elif error == 10 %}
+        <br><p class="error">Password must include at least 1 capital letter,<br> 1 small letter and 1 number.</p>
+        {% endif %}
+      </div>
+      <button class="sumbit" type="submit">Submit</button>
+      <p class="go_opposite">Already have an account? <a href="{% url 'login' %}">Login.</a></p>
+    </div>
+  </form>
+</body>
+</html>
